@@ -141,7 +141,7 @@
     .prose {
       font-family: 'Share Tech Mono', monospace;
       font-size: 15px;
-      line-height: 1.9;
+      line-height: 1.5;
       color: var(--green);
       opacity: 0;
       transition: opacity 0.8s ease;
@@ -149,7 +149,7 @@
 
     .prose.visible { opacity: 1; }
 
-    .prose p { margin-bottom: 16px; }
+    .prose p { margin-bottom: 28px; }
     .prose p:last-child { margin-bottom: 0; }
 
     .prose em {
@@ -338,7 +338,7 @@
 
       <div class="interest-section">
         <button class="interest-btn" id="interestBtn">
-          <span id="countDisplay"><span class="count-num" id="countNum">—</span> developers want to search their own repo</span>
+          <span id="countDisplay">Would you like to search your own repo?</span>
         </button>
       </div>
 
@@ -573,33 +573,45 @@
 
     // ─── INTEREST COUNTER ───────────────────────────────────────
     const interestBtn = document.getElementById('interestBtn');
-    const countNum = document.getElementById('countNum');
+    const countDisplay = document.getElementById('countDisplay');
     const COUNTER_KEY = 'fossil_interest_clicked';
+    const THRESHOLD = 100;
     const API = 'https://api.counterapi.dev/v1/fossil-itsmelody/want-own-repo';
+
+    function renderCountDisplay(count, hasClicked) {
+      if (!hasClicked) {
+        countDisplay.textContent = 'Would you like to search your own repo?';
+        return;
+      }
+      const n = count?.toLocaleString() ?? '—';
+      const suffix = count >= THRESHOLD ? ` We'll get right to it.` : '';
+      countDisplay.innerHTML = `<span class="count-num">${n}</span> developers want to search their own repo.${suffix}`;
+    }
+
+    let liveCount = 0;
+    const hasClicked = !!localStorage.getItem(COUNTER_KEY);
+
+    if (hasClicked) interestBtn.classList.add('clicked');
+    renderCountDisplay(liveCount, hasClicked);
 
     async function fetchCount() {
       try {
         const r = await fetch(API);
         const d = await r.json();
-        countNum.textContent = d.count?.toLocaleString() ?? '—';
-      } catch {
-        countNum.textContent = '—';
-      }
+        liveCount = d.count ?? 0;
+        renderCountDisplay(liveCount, !!localStorage.getItem(COUNTER_KEY));
+      } catch {}
     }
 
     async function incrementCount() {
       try {
         const r = await fetch(API + '/up');
         const d = await r.json();
-        countNum.textContent = d.count?.toLocaleString() ?? '—';
+        liveCount = d.count ?? liveCount + 1;
       } catch {
-        const current = parseInt(countNum.textContent.replace(/,/g, '')) || 0;
-        countNum.textContent = (current + 1).toLocaleString();
+        liveCount++;
       }
-    }
-
-    if (localStorage.getItem(COUNTER_KEY)) {
-      interestBtn.classList.add('clicked');
+      renderCountDisplay(liveCount, true);
     }
 
     interestBtn.addEventListener('click', () => {
