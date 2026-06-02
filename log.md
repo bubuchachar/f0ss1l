@@ -5,6 +5,33 @@
 - Tried Mother/Alien-style dot grid background via radial-gradient; looked better in theory than practice, reverted
 - Files touched: src/index.html
 
+## 2026-06-02 — Session end
+- README.md written: concept, fossil table, stack, v2 plan, provenance
+- compare.html created (temp, not committed): side-by-side dot comparison
+- Espanso skills.yml created: triggers for all Impeccable design commands
+- GitHub repo created: github.com/bubuchachar/f0ss1l (push pending email fix)
+- TODO next session: fix GitHub push (email privacy), delete compare.html, screenshot LinkedIn card at Cmd+0
+
+## 2026-06-02 — v1 deployed
+- Live at https://f0ss1l.vercel.app
+- LinkedIn card URL updated: f0ss1l.vercel.app
+- Tagged: git tag v1
+- Files touched: assets/linkedin-card.html
+
+## 2026-06-02 — LinkedIn card rewrite + dots finalized
+- Card rewritten from scratch: fixed-width .inner container, text-align center, plain ─ characters — same structure as site header
+- Root cause of border-line failures: .logo had no explicit width so border-line text wrapped inside SVG width (520px)
+- Dot grid finalized: SVG data URI, 40px grid, r=1.5, fill-opacity=0.08
+- Files touched: assets/linkedin-card.html, src/index.html
+
+## 2026-06-02 — Pre-deploy
+- Formspree ID wired: xpqnvygl → src/index.html
+- vercel.json created: rewrites all routes to src/index.html
+- LinkedIn card: dot grid background + border lines around logo
+- Dot grid added to main site body background
+- Custom scrollbar styled to match theme (slim, green-dim on black)
+- Files touched: src/index.html, assets/linkedin-card.html, vercel.json, CLAUDE.md
+
 ## 2026-06-02 — Typography: px → rem + prose readability
 - All font sizes converted from px to rem (accessibility — respects browser font preferences)
 - .prose and .intro-body: 15px → 1rem, line-height 1.5 → 1.65 (Doto needs more air on dark bg)
