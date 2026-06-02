@@ -73,15 +73,22 @@ Shallow clones (`--depth=N`) make `git blame` unreliable for date attribution.
 
 ---
 
-## Pre-Deploy Checklist
+## Deploy
 
-- [ ] Create Formspree account (login: m.for.midnight@gmail.com, notifications: hello@itsmelody.io)
-- [ ] Replace `REPLACE_WITH_YOUR_FORM_ID` in src/index.html with real form ID
-- [ ] Set up vercel.json
-- [ ] Run `vercel --prod` from project root
-- [ ] Replace `[url]` in assets/linkedin-card.html with live URL
-- [ ] Screenshot LinkedIn card at Cmd+0 in Arc (1080×1080)
-- [ ] Tag release: `git tag v1`
+- **Live:** https://f0ss1l.vercel.app
+- **Method:** manual `vercel --prod` from project root (GitHub auto-deploy NOT connected)
+- **Config:** vercel.json rewrites both `/` and `/(.*)` to `/src/index.html`
+- **Artifact index:** `artifacts.html` at root (renamed from index.html to avoid Vercel static file conflict)
+
+## Pre-Deploy Checklist (v1 done)
+
+- [x] Formspree wired: xpqnvygl
+- [x] vercel.json: rewrites / and /(.*) to /src/index.html
+- [x] OG meta tags in src/index.html
+- [x] Live URL verified in Arc after deploy
+- [x] LinkedIn card screenshot at Cmd+0
+- [x] Tagged: git tag v1
+- [ ] GitHub → Vercel auto-deploy not connected (manual deploy required each time)
 
 ---
 
