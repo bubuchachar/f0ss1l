@@ -44,7 +44,7 @@ The interest capture at the bottom of each F0SS1L measures demand for v2.
 
 <div align="center"><img src="assets/divider.svg?v=4" width="800" /></div>
 
-## v2 — The Tool
+## V2: The Tool
 
 v2 will accept any public git repo URL and surface its oldest surviving comments automatically. The literary pieces will be generated. The archaeology will be real.
 
