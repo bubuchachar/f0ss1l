@@ -1,5 +1,60 @@
 # Log — Fossil
 
+## 2026-06-02 — Divider gaps fixed, green someone SVG, banner.svg removed
+- Divider: left text x=4, rect x=36 to x=764, right text text-anchor=end x=796 — symmetric gaps both sides
+- Created assets/someone.svg: "Someone is going to ask." in #4DFF7C, centered
+- README: swapped <sub> text for SVG, bumped divider cache to v=4
+- Deleted assets/banner.svg (unused — PNG banner in use)
+- Link color note: GitHub controls link colors via CSS, cannot be changed in markdown
+- Files touched: assets/divider.svg, assets/someone.svg, README.md
+
+## 2026-06-02 — Banner PNG updated, divider +++ fixed
+- New banner.png: #0d1117 background matching GitHub dark mode
+- Divider: +++ text brighter (#2A8B55, full opacity), font-size 12→14
+- Right +++ was getting clipped — fixed with text-anchor="end" x="800" so it's always right-flush
+- README switched back to banner.png, divider cache-busted to ?v=3
+- Files touched: assets/banner.png, assets/divider.svg, README.md
+
+## 2026-06-02 — Divider +++ restored, line thicker
+- Restored +++ anchors on both ends of divider.svg (removed previous message, user wanted them back)
+- Line height 1px → 2px
+- Files touched: assets/divider.svg
+
+## 2026-06-02 — Divider simplified to line only
+- Removed +++ anchors from divider.svg — plain horizontal line spanning full width
+- Files touched: assets/divider.svg
+
+## 2026-06-02 — Green SVG dividers in README
+- Created assets/divider.svg: +++ line +++ pattern in #1A6B35, 800px wide
+- Replaced all plain text dividers in README with SVG img tags (only way to get color in GitHub markdown)
+- Files touched: assets/divider.svg, README.md
+
+## 2026-06-02 — README dividers + badges cleaned up
+- Replaced shields.io badges with plain linked text (badges had unreadable bright green boxes)
+- Replaced all `---` horizontal rules with `+++ ─── +++` centered text dividers (brand pattern)
+- Note: dividers render in GitHub's default grey — can't apply green color in markdown without SVG
+- Files touched: README.md
+
+## 2026-06-02 — Cache bust banner SVG
+- Added ?v=2 to banner.svg URL in README to force GitHub to re-fetch
+- Files touched: README.md
+
+## 2026-06-02 — Banner tagline size increased
+- Tagline font-size 13 → 22 on banner.svg (was too small relative to logo)
+- Files touched: assets/banner.svg
+
+## 2026-06-02 — Banner background matched to GitHub dark mode
+- Changed banner.svg background from #060E06 → #0d1117 (GitHub's dark mode page color)
+- README switched back to banner.svg from banner.png
+- Root cause: PNG banner had dark green background that clashed visibly with GitHub's navy-black
+- Files touched: assets/banner.svg, README.md
+
+## 2026-06-02 — README banner updated to PNG
+- Replaced SVG banner (font rendering broken on GitHub) with screenshot PNG from Figma/card
+- banner.png saved to assets/, README updated to reference it
+- linkedin-card.html: margin: 0 auto added to center 1080px body in wider viewports
+- Files touched: assets/banner.png, README.md, assets/linkedin-card.html
+
 ## 2026-06-02 — LinkedIn card tagline repositioned
 - Tagline "abandoned comments from real codebases" moved from below logo to right of logo, flush left
 - Wrapped .logo and .tagline in .logo-row flex container; tagline text-align: left

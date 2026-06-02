@@ -18,11 +18,11 @@ Comments are the most honest writing a programmer produces. Nobody writes them t
 
 <div align="center"><img src="assets/divider.svg?v=4" width="800" /></div>
 
-## The Fossils
+## The F0SS1Ls
 
-Each fossil is a real comment recovered from a real codebase. It comes with a loneliness score — the percentage of surrounding code that has been replaced since the comment was written. And a literary piece: what the comment witnessed, in its own voice.
+Each F0SS1L is a real comment recovered from a real codebase. It comes with a loneliness score — the percentage of surrounding code that has been replaced since the comment was written. And a literary piece: what the comment witnessed, in its own voice.
 
-Every fossil ends the same way.
+Every F0SS1L ends the same way.
 
 | # | Comment | Source | Loneliness |
 |---|---------|--------|------------|
@@ -38,9 +38,9 @@ Every fossil ends the same way.
 
 ## How It Works
 
-v1 is fully static. Seven hand-curated fossils, each with a literary piece written from the comment's perspective. No backend, no database. The loneliness score is calculated from `git blame` — how much of the surrounding code has been replaced since the comment was written.
+v1 is fully static. Seven hand-curated F0SS1Ls, each with a literary piece written from the comment's perspective. No backend, no database. The loneliness score is calculated from `git blame` — how much of the surrounding code has been replaced since the comment was written.
 
-The interest capture at the bottom of each fossil measures demand for v2.
+The interest capture at the bottom of each F0SS1L measures demand for v2.
 
 <div align="center"><img src="assets/divider.svg?v=4" width="800" /></div>
 
