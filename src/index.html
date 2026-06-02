@@ -10,6 +10,11 @@
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--black); }
+    ::-webkit-scrollbar-thumb { background: var(--green-dim); }
+    * { scrollbar-width: thin; scrollbar-color: var(--green-dim) var(--black); }
+
     :root {
       --green: #4DFF7C;
       --green-bright: #00FF41;
@@ -27,7 +32,11 @@
 
     body {
       min-height: 100vh;
-      background: var(--black);
+      background:
+        radial-gradient(circle, rgba(0, 255, 65, 0.35) 1px, transparent 1px),
+        radial-gradient(circle, rgba(0, 255, 65, 0.10) 3px, transparent 3px),
+        var(--black);
+      background-size: 80px 80px, 80px 80px, auto;
       color: var(--green);
       font-family: 'Share Tech Mono', monospace;
       font-size: 0.9375rem;
@@ -878,7 +887,7 @@
     const COUNTER_KEY = 'fossil_interest_clicked';
     const THRESHOLD = 100;
     const API = 'https://api.counterapi.dev/v1/fossil-itsmelody/want-own-repo';
-    const FORMSPREE = 'https://formspree.io/f/REPLACE_WITH_YOUR_FORM_ID';
+    const FORMSPREE = 'https://formspree.io/f/xpqnvygl';
 
     function bracket(n) {
       return `<span class="bracket">[</span><span class="count-num"> ${n} </span><span class="bracket">]</span>`;

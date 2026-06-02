@@ -1,5 +1,32 @@
 # Log — Fossil
 
+## 2026-06-02 — Scroll fix + dot background experiment
+- Locked scroll on html via JS during intro (CSS overflow-y caused scroll on fossil pages after dismiss — moved to inline style so clearing it restores default)
+- Tried Mother/Alien-style dot grid background via radial-gradient; looked better in theory than practice, reverted
+- Files touched: src/index.html
+
+## 2026-06-02 — Typography: px → rem + prose readability
+- All font sizes converted from px to rem (accessibility — respects browser font preferences)
+- .prose and .intro-body: 15px → 1rem, line-height 1.5 → 1.65 (Doto needs more air on dark bg)
+- .attribution bumped from 12px → 0.8125rem (was smallest readable element, one notch up)
+- .payoff: 16px → 1rem (inherits from intro-body, color/glow still distinguishes it)
+- Files touched: src/index.html
+
+## 2026-06-02 — Impeccable slop audit
+- Ran full CSS audit against Impeccable's 41 slop rules
+- One real flag: `transition: all` on three buttons (.interest-btn, .email-submit, .init-btn)
+- Fixed to explicit properties per element's actual hover changes
+- Everything else clean: no gradient text, no glassmorphism, no generic palette, no border-radius, no shadow soup
+- Files touched: src/index.html
+
+## 2026-06-02 — Impeccable design context added
+- Ran teach-impeccable: gathered design context from codebase + Melody input
+- Emotional register confirmed: melancholy → wry recognition → reverence, in that order
+- Aesthetic anchor: Blade Runner / Matrix warmth, not cold brutalism
+- Five design principles written and persisted to `.impeccable.md`
+- CLAUDE.md allowlist updated to include `.impeccable.md`
+- Files touched: `.impeccable.md` (new), `CLAUDE.md`
+
 ## 2026-06-02 — Retro applied
 - memory.md rewritten: 7 fossils with correct numbering, current state, pre-deploy checklist, launch copy
 - Global CLAUDE.md: voice calibration rule (launch copy), permission-question-blocks-commit rule

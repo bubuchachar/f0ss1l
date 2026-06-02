@@ -13,6 +13,10 @@
 - [ ] Mobile responsive
 - [ ] Phosphor glow on comment text, subtle flicker
 
+## CSS cleanup (post-v1, low priority)
+- [ ] F2: z-index magic numbers (9999/9998) on CRT overlays — move to `--z-crt-scanlines` / `--z-crt-vignette` CSS vars in `:root`
+- [ ] F3: inline rgba values in glow box-shadows duplicate `--green-bright` — if the green ever changes, update in two places
+
 ## Phase 3 — Ship
 - [ ] vercel.json config
 - [ ] Deploy → vercel --prod

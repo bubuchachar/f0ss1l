@@ -63,3 +63,4 @@ Permitted files in project root:
 - .impeccable.md
 - src/
 - assets/
+- vercel.json
