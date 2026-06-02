@@ -342,6 +342,79 @@
       text-shadow: var(--glow-soft);
     }
 
+    .bracket {
+      color: var(--green-dim);
+    }
+
+    .email-capture {
+      display: none;
+      margin-top: 12px;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 12px;
+      color: var(--green-dim);
+    }
+
+    .email-capture.visible {
+      display: block;
+    }
+
+    .email-capture p {
+      margin: 0 0 8px;
+      letter-spacing: 0.5px;
+    }
+
+    .email-row {
+      display: flex;
+      gap: 8px;
+    }
+
+    .email-input {
+      flex: 1;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 12px;
+      color: var(--green);
+      background: none;
+      border: 1px solid var(--green-dim);
+      padding: 8px 10px;
+      outline: none;
+      letter-spacing: 0.5px;
+    }
+
+    .email-input::placeholder {
+      color: var(--green-dim);
+      opacity: 0.5;
+    }
+
+    .email-input:focus {
+      border-color: var(--green);
+    }
+
+    .email-submit {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 12px;
+      color: var(--green-dim);
+      background: none;
+      border: 1px solid var(--green-dim);
+      padding: 8px 14px;
+      cursor: pointer;
+      letter-spacing: 1px;
+      transition: all 0.15s;
+      white-space: nowrap;
+    }
+
+    .email-submit:hover {
+      color: var(--green);
+      border-color: var(--green);
+      background: var(--green-faint);
+    }
+
+    .email-success {
+      color: var(--green-dim);
+      font-size: 12px;
+      letter-spacing: 0.5px;
+      margin-top: 8px;
+    }
+
     /* ─── TRANSITIONS ─────────────────────────────────── */
     .fossil-card {
       transition: opacity 0.3s ease;
@@ -500,6 +573,13 @@
         <button class="interest-btn" id="interestBtn">
           <span id="countDisplay">Would you like to search your own repo?</span>
         </button>
+        <div class="email-capture" id="emailCapture">
+          <div class="email-row" id="emailRow">
+            <input class="email-input" id="emailInput" type="email" placeholder="drop your email. we'll tell you when it's live." autocomplete="email">
+            <button class="email-submit" id="emailSubmit">NOTIFY ME</button>
+          </div>
+          <p class="email-success" id="emailSuccess" style="display:none">You're on the list.</p>
+        </div>
       </div>
 
     </div>
@@ -786,18 +866,29 @@
     // ─── INTEREST COUNTER ───────────────────────────────────────
     const interestBtn = document.getElementById('interestBtn');
     const countDisplay = document.getElementById('countDisplay');
+    const emailCapture = document.getElementById('emailCapture');
+    const emailRow = document.getElementById('emailRow');
+    const emailInput = document.getElementById('emailInput');
+    const emailSubmit = document.getElementById('emailSubmit');
+    const emailSuccess = document.getElementById('emailSuccess');
     const COUNTER_KEY = 'fossil_interest_clicked';
     const THRESHOLD = 100;
     const API = 'https://api.counterapi.dev/v1/fossil-itsmelody/want-own-repo';
+    const FORMSPREE = 'https://formspree.io/f/REPLACE_WITH_YOUR_FORM_ID';
+
+    function bracket(n) {
+      return `<span class="bracket">[</span><span class="count-num"> ${n} </span><span class="bracket">]</span>`;
+    }
 
     function renderCountDisplay(count, hasClicked) {
+      const n = (count ?? 0).toLocaleString();
       if (!hasClicked) {
-        countDisplay.textContent = 'Would you like to search your own repo?';
+        countDisplay.innerHTML = `${bracket(n)}  Be the first commit.`;
         return;
       }
-      const n = count?.toLocaleString() ?? '—';
-      const suffix = count >= THRESHOLD ? ` We'll get right to it.` : '';
-      countDisplay.innerHTML = `<span class="count-num">${n}</span> developers want to search their own repo.${suffix}`;
+      const suffix = count >= THRESHOLD ? `  We'll get right to it.` : '';
+      const word = count === 1 ? 'developer wants' : 'developers want';
+      countDisplay.innerHTML = `${bracket(n)}  ${word} to search their own repo.${suffix}`;
     }
 
     let liveCount = 0;
@@ -810,7 +901,9 @@
         const r = await fetch(API);
         const d = await r.json();
         liveCount = d.count ?? 0;
-        // Don't overwrite the question state on load
+        if (!interestBtn.classList.contains('clicked')) {
+          renderCountDisplay(liveCount, false);
+        }
       } catch {}
     }
 
@@ -828,12 +921,28 @@
     interestBtn.addEventListener('click', () => {
       if (interestBtn.classList.contains('clicked')) return;
       interestBtn.classList.add('clicked');
-      // Show count immediately with whatever we have, then update when API responds
       renderCountDisplay(liveCount, true);
+      emailCapture.classList.add('visible');
       if (!localStorage.getItem(COUNTER_KEY)) {
         localStorage.setItem(COUNTER_KEY, '1');
         incrementCount();
       }
+    });
+
+    emailSubmit.addEventListener('click', async () => {
+      const email = emailInput.value.trim();
+      if (!email) return;
+      emailSubmit.disabled = true;
+      emailSubmit.textContent = '...';
+      try {
+        await fetch(FORMSPREE, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify({ email })
+        });
+      } catch {}
+      emailRow.style.display = 'none';
+      emailSuccess.style.display = 'block';
     });
 
     fetchCount();

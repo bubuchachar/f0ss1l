@@ -1,5 +1,16 @@
 # Log — Fossil
 
+## 2026-06-02 — Interest capture redesign + LinkedIn card
+- Counter redesigned: pre-click shows `[ 0 ]  Be the first commit.` with live count from API
+- Post-click: `[ N ]  developer(s) want to search their own repo.` + email field inline
+- Email field placeholder replaces separate label: "drop your email. we'll tell you when it's live."
+- Email capture posts to Formspree (REPLACE_WITH_YOUR_FORM_ID placeholder — fill before deploy)
+- On submit: email row swaps to "You're on the list." without page navigation
+- `[ N ]` bracket styling: dim green brackets, bright glowing number
+- LinkedIn launch card created: assets/linkedin-card.html (1080×1080, screenshot at Cmd+0)
+- Copy: "Code is written by people. Some of it gets left behind. / Someone's gonna ask."
+- Files touched: src/index.html, assets/linkedin-card.html
+
 ## 2026-05-31 — Session start
 - Committed dangling log.md entry (CLAUDE.md update) left unstaged from previous session
 - Files touched: log.md

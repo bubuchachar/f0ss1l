@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      width: 1080px;
+      height: 1080px;
+      background: #060E06;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .card {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 100px;
+      gap: 64px;
+      position: relative;
+    }
+
+    /* CRT scanlines */
+    .card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        to bottom,
+        transparent,
+        transparent 3px,
+        rgba(0,0,0,0.08) 3px,
+        rgba(0,0,0,0.08) 4px
+      );
+      pointer-events: none;
+    }
+
+    .logo svg {
+      width: 520px;
+      height: auto;
+      fill: #00FF41;
+      filter: drop-shadow(0 0 12px rgba(0,255,65,0.9)) drop-shadow(0 0 32px rgba(0,255,65,0.4));
+    }
+
+    .copy {
+      font-family: 'Share Tech Mono', monospace;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .line1 {
+      font-size: 28px;
+      color: #4DFF7C;
+      line-height: 1.5;
+      letter-spacing: 0.5px;
+    }
+
+    .line2 {
+      font-size: 28px;
+      color: #00FF41;
+      text-shadow: 0 0 8px rgba(0,255,65,0.8);
+      letter-spacing: 1px;
+    }
+
+    .url {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 18px;
+      color: #4DFF7C;
+      opacity: 0.5;
+      letter-spacing: 1px;
+      position: absolute;
+      bottom: 72px;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="logo">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 67.5 10.5">
+        <path d="M0,10.5V0h10.5v1.5H3v3h6v1.5H3v4.5H0Z"/>
+        <path d="M25.5,10.5v-1.5h-1.5v-1.5h3v1.5h4.5v-3h-6v-1.5h-1.5V1.5h1.5V0h7.5v1.5h1.5v1.5h-3v-1.5h-4.5v3h6v1.5h1.5v3h-1.5v1.5h-7.5Z"/>
+        <path d="M37.5,10.5v-1.5h-1.5v-1.5h3v1.5h4.5v-3h-6v-1.5h-1.5V1.5h1.5V0h7.5v1.5h1.5v1.5h-3v-1.5h-4.5v3h6v1.5h1.5v3h-1.5v1.5h-7.5Z"/>
+        <path d="M48,10.5v-1.5h3V3h-1.5v-1.5h1.5V0h3v9h3v1.5h-9Z"/>
+        <path d="M58.5,10.5V0h3v9h6v1.5h-9Z"/>
+        <path d="M13.5,10.5v-1.5h-1.5V1.5h1.5V0h7.5v1.5h1.5v7.5h-1.5v1.5h-7.5ZM15,9h4.5v-4.5h-1.5v-1.5h1.5v-1.5h-4.5v4.5h1.5v1.5h-1.5v1.5ZM16.5,6v-1.5h1.5v1.5h-1.5Z"/>
+      </svg>
+    </div>
+
+    <div class="copy">
+      <div class="line1">Code is written by people.<br>Some of it gets left behind.</div>
+      <div class="line2">Someone's gonna ask.</div>
+    </div>
+
+    <div class="url">[url]</div>
+  </div>
+</body>
+</html>
