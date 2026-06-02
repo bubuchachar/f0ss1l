@@ -7,4 +7,6 @@
 - Wrote all 6 literary pieces
 - Defined visual direction: F0SS1L, phosphor green, CRT terminal aesthetic
 - Defined launch strategy: curated static v1 → interest capture → live git v2
-- Scaffolded project folder and git repo
+- Scaffolded project folder and git repo → CLAUDE.md, memory.md, log.md, index.html, .gitignore
+- Moved all 6 fossil literary pieces into src/fossils/ (01–06)
+- Global memory project_fossil.md migrated into project memory.md
