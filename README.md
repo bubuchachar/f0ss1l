@@ -6,7 +6,7 @@
 
 </div>
 
-<div align="center"><img src="assets/divider.svg?v=3" width="800" /></div>
+<div align="center"><img src="assets/divider.svg?v=4" width="800" /></div>
 
 Every codebase is a Ship of Theseus.
 
@@ -16,7 +16,7 @@ Comments are the most honest writing a programmer produces. Nobody writes them t
 
 **F0SS1L finds them.**
 
-<div align="center"><img src="assets/divider.svg?v=3" width="800" /></div>
+<div align="center"><img src="assets/divider.svg?v=4" width="800" /></div>
 
 ## The Fossils
 
@@ -34,7 +34,7 @@ Every fossil ends the same way.
 | 06 | `// This mutation is ugly, even if we undo it` | jqlang/jq | 87% |
 | 07 | `/* POSIX doesn't provide errno values for strftime() failures; weird */` | jqlang/jq | 92% |
 
-<div align="center"><img src="assets/divider.svg?v=3" width="800" /></div>
+<div align="center"><img src="assets/divider.svg?v=4" width="800" /></div>
 
 ## How It Works
 
@@ -42,7 +42,7 @@ v1 is fully static. Seven hand-curated fossils, each with a literary piece writt
 
 The interest capture at the bottom of each fossil measures demand for v2.
 
-<div align="center"><img src="assets/divider.svg?v=3" width="800" /></div>
+<div align="center"><img src="assets/divider.svg?v=4" width="800" /></div>
 
 ## v2 — The Tool
 
@@ -50,7 +50,7 @@ v2 will accept any public git repo URL and surface its oldest surviving comments
 
 Threshold for building v2: watching signups.
 
-<div align="center"><img src="assets/divider.svg?v=3" width="800" /></div>
+<div align="center"><img src="assets/divider.svg?v=4" width="800" /></div>
 
 ## Stack
 
@@ -63,7 +63,7 @@ assets/
   f0ss1l.svg     — logo (kerning-corrected by hand)
 ```
 
-<div align="center"><img src="assets/divider.svg?v=3" width="800" /></div>
+<div align="center"><img src="assets/divider.svg?v=4" width="800" /></div>
 
 ## Provenance
 
@@ -71,8 +71,6 @@ The concept came out of a free-play session on the Ship of Theseus applied to co
 
 F0SS1L uses 0 and 1 in place of O and I — not arbitrarily. 0 and 1 are binary, the oldest layer of any codebase.
 
-<div align="center"><img src="assets/divider.svg?v=3" width="800" /></div>
+<div align="center"><img src="assets/divider.svg?v=4" width="800" /></div>
 
-<div align="center">
-<sub>Someone is going to ask.</sub>
-</div>
+<div align="center"><img src="assets/someone.svg" width="400" /></div>
