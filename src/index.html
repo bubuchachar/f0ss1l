@@ -213,7 +213,20 @@
       align-items: center;
       justify-content: space-between;
       gap: 16px;
-      flex-wrap: wrap;
+    }
+
+    .nav-counter-mobile {
+      display: none;
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    @media (max-width: 520px) {
+      .nav-row { gap: 10px; }
+      .nav-btn { flex: 1; text-align: center; padding: 10px 8px; }
+      .nav-counter { display: none; }
+      .nav-counter-mobile { display: block; }
+      .jump-row { flex-direction: column; gap: 6px; }
     }
 
     .nav-btn {
@@ -357,6 +370,7 @@
           <button class="nav-btn" id="btnNext">NEXT →</button>
         </div>
         <div class="jump-row">
+          <div class="nav-counter nav-counter-mobile" id="navCounterMobile">fossil 01 of 06</div>
           <span class="jump-label">jump to fossil</span>
           <input class="jump-input" id="jumpInput" type="text" maxlength="2" placeholder="__">
         </div>
@@ -494,6 +508,7 @@
     const proseEl = document.getElementById('prose');
     const attributionEl = document.getElementById('attribution');
     const navCounter = document.getElementById('navCounter');
+    const navCounterMobile = document.getElementById('navCounterMobile');
     const fossilNumber = document.getElementById('fossilNumber');
     const btnPrev = document.getElementById('btnPrev');
     const btnNext = document.getElementById('btnNext');
@@ -544,7 +559,9 @@
         fossilCard.classList.remove('fading');
         window.scrollTo({ top: 0, behavior: 'instant' });
 
-        navCounter.textContent = `fossil ${pad(idx + 1)} of ${pad(FOSSILS.length)}`;
+        const label = `fossil ${pad(idx + 1)} of ${pad(FOSSILS.length)}`;
+        navCounter.textContent = label;
+        navCounterMobile.textContent = label;
         fossilNumber.textContent = pad(idx + 1);
         btnPrev.disabled = idx === 0;
         btnNext.disabled = idx === FOSSILS.length - 1;
