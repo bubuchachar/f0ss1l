@@ -15,9 +15,10 @@
 
 ## Brand
 
-- **Primary color:** #00FF41 (phosphor green)
-- **Background:** #000000
-- **Typography:** monospace — body copy; chunky pixel display font for logo
+- **Accent:** #00FF41 (phosphor green — comment block, logo, "Someone is going to ask.")
+- **Body text:** #4DFF7C (softer green — prose, nav, attribution)
+- **Background:** #060E06 (very dark green — easier on eyes than pure black)
+- **Typography:** Doto (body — swap pending next session); Press Start 2P (logo only)
 - **Logo:** F0SS1L (0 replaces o, 1 replaces i — thematically exact: binary is the bedrock)
 - **Brand notes:** Matrix / old-school terminal aesthetic. CRT scanline texture. No gradients. No rounded corners. Decorative borders with `+++` and `----`.
 
@@ -42,9 +43,11 @@
 
 ## Open Questions
 
-- [ ] Interest capture: email form or counter?
-- [ ] Font for logo: find a chunky pixel font that reads well at display size
+- [x] Interest capture: click counter only (counterapi.dev), no email
+- [x] Font for logo: Press Start 2P
+- [ ] Swap body font from Share Tech Mono → Doto (next session)
 - [ ] F0SS1L 01 needs a real repo comment for provenance (currently fictional composite)
+- [ ] Deploy: vercel.json + vercel --prod + v1 tag
 
 ---
 
