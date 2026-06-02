@@ -1,5 +1,10 @@
 # Log — Fossil
 
+## 2026-06-02 — LinkedIn card tagline repositioned
+- Tagline "abandoned comments from real codebases" moved from below logo to right of logo, flush left
+- Wrapped .logo and .tagline in .logo-row flex container; tagline text-align: left
+- Files touched: assets/linkedin-card.html
+
 ## 2026-06-02 — Scroll fix + dot background experiment
 - Locked scroll on html via JS during intro (CSS overflow-y caused scroll on fossil pages after dismiss — moved to inline style so clearing it restores default)
 - Tried Mother/Alien-style dot grid background via radial-gradient; looked better in theory than practice, reverted
