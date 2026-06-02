@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="assets/banner.png" width="800" alt="F0SS1L — abandoned comments from real codebases" />
+<img src="assets/banner.svg" width="800" alt="F0SS1L — abandoned comments from real codebases" />
 
 [![Live](https://img.shields.io/badge/live-f0ss1l.vercel.app-00FF41?style=flat-square&labelColor=060E06)](https://f0ss1l.vercel.app)
 ![Status](https://img.shields.io/badge/status-v1%20shipped-4DFF7C?style=flat-square&labelColor=060E06)
