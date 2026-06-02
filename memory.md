@@ -48,6 +48,14 @@ Register: bureaucratic exhaustion
 
 ---
 
+## Git Archaeology — Shallow Clone Limitation
+Shallow clones (`--depth=N`) make `git blame` unreliable for date attribution. All pre-depth lines get attributed to the oldest available commit boundary — not their true age.
+
+- **kilo**: reliable dates (small repo, near-full history in shallow clone)
+- **jq**: all old comments show Jul 4, 2023 — shallow boundary, not true age (jq dates to ~2012)
+- **redis**: same problem — large repo, dates unreliable without full clone
+- For future fossil hunting: clone without depth limit for small repos only, or accept date uncertainty and note it in attribution.
+
 ## Launch Plan
 
 - v1: static site, 6 fossils, interest capture button → Reddit / LinkedIn
