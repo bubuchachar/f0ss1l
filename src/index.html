@@ -143,13 +143,14 @@
       font-size: 15px;
       line-height: 1.5;
       color: var(--green);
-      opacity: 0;
-      transition: opacity 0.8s ease;
     }
 
-    .prose.visible { opacity: 1; }
-
-    .prose p { margin-bottom: 28px; }
+    .prose p {
+      margin-bottom: 28px;
+      opacity: 0;
+      transition: opacity 0.2s ease;
+    }
+    .prose p.visible { opacity: 1; }
     .prose p:last-child { margin-bottom: 0; }
 
     .prose em {
@@ -509,7 +510,7 @@
       if (isTransitioning && !immediate) return;
       const f = FOSSILS[idx];
 
-      proseEl.classList.remove('visible');
+      proseEl.querySelectorAll('p').forEach(p => p.classList.remove('visible'));
       attributionEl.classList.remove('visible');
 
       const doRender = () => {
@@ -522,18 +523,27 @@
 
         typewrite(f.comment, commentBlock, () => {
           proseEl.innerHTML = f.prose.map(p => `<p>${p}</p>`).join('');
-          proseEl.classList.add('visible');
 
-          const attrText = buildAttribution(f);
-          attributionEl.innerHTML = attrText.split('\n').map((l, i) => {
-            if (l.startsWith('Someone') || l === '') return `<span class="someone">${l}</span>`;
-            return `<span>${l}</span>`;
-          }).join('<br>') + `<span class="someone">Someone is going to ask.</span>`;
-
-          setTimeout(() => {
-            attributionEl.classList.add('visible');
-            isTransitioning = false;
-          }, 400);
+          const paras = proseEl.querySelectorAll('p');
+          let pi = 0;
+          const revealNext = () => {
+            if (pi < paras.length) {
+              paras[pi].classList.add('visible');
+              pi++;
+              setTimeout(revealNext, 90);
+            } else {
+              const attrText = buildAttribution(f);
+              attributionEl.innerHTML = attrText.split('\n').map(l => {
+                if (l.startsWith('Someone') || l === '') return `<span class="someone">${l}</span>`;
+                return `<span>${l}</span>`;
+              }).join('<br>') + `<span class="someone">Someone is going to ask.</span>`;
+              setTimeout(() => {
+                attributionEl.classList.add('visible');
+                isTransitioning = false;
+              }, 150);
+            }
+          };
+          setTimeout(revealNext, 100);
         });
       };
 
