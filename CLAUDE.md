@@ -60,5 +60,6 @@ Permitted files in project root:
 - index.html
 - tasks.md
 - .gitignore
+- .impeccable.md
 - src/
 - assets/
