@@ -25,7 +25,7 @@ Each F0SS1L is a real comment recovered from a real codebase. It comes with a lo
 Every F0SS1L ends the same way.
 
 | # | Comment | Source | Loneliness |
-|---|---------|--------|------------|
+|---|:--------|:-------|------------|
 | 01 | `// TODO: remove this — temporary workaround for wrapping issue` | composite — every codebase, everywhere | ∞% |
 | 02 | `// No session — sign in anonymously, no login screen needed` | bubuchachar/memori-v2 | 91% |
 | 03 | `/* Don't even check the return value as it's too late. */` | antirez/kilo | 89% |
