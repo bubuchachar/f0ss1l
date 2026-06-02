@@ -12,7 +12,7 @@ In 1960, someone at Bell Labs decided how a terminal should talk to a computer. 
 
 The protocol is still here. Under every modern terminal, every shell, every text editor that has ever existed: the same handshake. Flip the bits. Tell the device: stop buffering, stop echoing, stop processing special characters. I'll handle it now.
 
-He had to implement this. Sixty years later, in a language that didn't exist when the protocol was designed, for hardware that would have seemed like fiction to the people who wrote the spec. He did it. Then he wrote four words.
+He had to implement this. Sixty years later, in a language that didn't exist when the protocol was designed, for hardware that would have seemed like fiction to the people who wrote the spec. He did it. Then he wrote three words.
 
 *1960 magic shit.*
 

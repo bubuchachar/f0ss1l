@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>F0SS1L — abandoned comments from real codebases</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323:wght@400&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --green: #00FF41;
+      --green-dim: #00882B;
+      --green-faint: #003D12;
+      --black: #000000;
+      --glow: 0 0 8px rgba(0, 255, 65, 0.7), 0 0 20px rgba(0, 255, 65, 0.3);
+      --glow-soft: 0 0 6px rgba(0, 255, 65, 0.4);
+    }
+
+    html, body {
+      height: 100%;
+      background: var(--black);
+      color: var(--green);
+      font-family: 'VT323', monospace;
+      font-size: 20px;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* CRT scanlines */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 3px,
+        rgba(0, 0, 0, 0.18) 3px,
+        rgba(0, 0, 0, 0.18) 4px
+      );
+      pointer-events: none;
+      z-index: 9999;
+    }
+
+    /* CRT vignette */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(ellipse at center, transparent 60%, rgba(0,0,0,0.6) 100%);
+      pointer-events: none;
+      z-index: 9998;
+    }
+
+    .page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 24px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 660px;
+    }
+
+    /* ─── HEADER ─────────────────────────────────────── */
+    .header {
+      margin-bottom: 40px;
+      text-align: center;
+    }
+
+    .border-line {
+      color: var(--green-dim);
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 13px;
+      letter-spacing: 2px;
+      margin: 10px 0;
+      opacity: 0.7;
+    }
+
+    .logo {
+      font-family: 'Press Start 2P', monospace;
+      font-size: clamp(24px, 6vw, 42px);
+      color: var(--green);
+      text-shadow: var(--glow);
+      letter-spacing: 4px;
+      margin: 16px 0 10px;
+      line-height: 1.4;
+    }
+
+    .tagline {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 13px;
+      color: var(--green-dim);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+
+    /* ─── FOSSIL CARD ─────────────────────────────────── */
+    .fossil-card {
+      margin: 0 0 36px;
+    }
+
+    .comment-block {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 15px;
+      color: var(--green);
+      text-shadow: var(--glow);
+      background: var(--green-faint);
+      border: 1px solid var(--green-dim);
+      padding: 16px 20px;
+      margin-bottom: 28px;
+      min-height: 54px;
+      line-height: 1.5;
+      white-space: pre-wrap;
+      word-break: break-all;
+    }
+
+    .comment-block .cursor {
+      display: inline-block;
+      width: 10px;
+      height: 18px;
+      background: var(--green);
+      vertical-align: middle;
+      margin-left: 2px;
+      animation: blink 1s step-end infinite;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+
+    .prose {
+      font-family: 'VT323', monospace;
+      font-size: 22px;
+      line-height: 1.7;
+      color: var(--green);
+      opacity: 0;
+      transition: opacity 0.8s ease;
+    }
+
+    .prose.visible { opacity: 1; }
+
+    .prose p { margin-bottom: 16px; }
+    .prose p:last-child { margin-bottom: 0; }
+
+    .prose em {
+      font-style: italic;
+      color: var(--green);
+      text-shadow: var(--glow-soft);
+    }
+
+    .attribution {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 12px;
+      color: var(--green-dim);
+      margin-top: 28px;
+      line-height: 1.8;
+      opacity: 0;
+      transition: opacity 0.8s ease 0.4s;
+    }
+
+    .attribution.visible { opacity: 1; }
+
+    .attribution .someone {
+      color: var(--green);
+      font-size: 13px;
+      margin-top: 4px;
+      display: block;
+    }
+
+    /* ─── NAVIGATION ──────────────────────────────────── */
+    .nav-section {
+      border-top: 1px solid var(--green-dim);
+      padding-top: 24px;
+      margin-top: 8px;
+    }
+
+    .nav-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .nav-btn {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 14px;
+      color: var(--green);
+      background: none;
+      border: 1px solid var(--green-dim);
+      padding: 8px 20px;
+      cursor: pointer;
+      letter-spacing: 2px;
+      transition: border-color 0.15s, text-shadow 0.15s, background 0.15s;
+    }
+
+    .nav-btn:hover:not(:disabled) {
+      border-color: var(--green);
+      text-shadow: var(--glow-soft);
+      background: var(--green-faint);
+    }
+
+    .nav-btn:disabled {
+      opacity: 0.25;
+      cursor: default;
+    }
+
+    .nav-counter {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 13px;
+      color: var(--green-dim);
+      letter-spacing: 2px;
+      text-align: center;
+      flex: 1;
+    }
+
+    .jump-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .jump-label {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 12px;
+      color: var(--green-dim);
+      letter-spacing: 1px;
+    }
+
+    .jump-input {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 14px;
+      color: var(--green);
+      background: var(--black);
+      border: none;
+      border-bottom: 1px solid var(--green-dim);
+      width: 32px;
+      text-align: center;
+      outline: none;
+      padding: 2px 4px;
+    }
+
+    .jump-input:focus {
+      border-bottom-color: var(--green);
+      text-shadow: var(--glow-soft);
+    }
+
+    /* ─── INTEREST COUNTER ────────────────────────────── */
+    .interest-section {
+      margin-top: 32px;
+      text-align: center;
+    }
+
+    .interest-btn {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 13px;
+      color: var(--green-dim);
+      background: none;
+      border: 1px dashed var(--green-dim);
+      padding: 12px 24px;
+      cursor: pointer;
+      letter-spacing: 1px;
+      line-height: 1.5;
+      transition: all 0.15s;
+      width: 100%;
+    }
+
+    .interest-btn:hover:not(.clicked) {
+      color: var(--green);
+      border-color: var(--green);
+      border-style: solid;
+      background: var(--green-faint);
+    }
+
+    .interest-btn.clicked {
+      color: var(--green);
+      border-style: solid;
+      border-color: var(--green-dim);
+      cursor: default;
+    }
+
+    .count-num {
+      color: var(--green);
+      text-shadow: var(--glow-soft);
+    }
+
+    /* ─── TRANSITIONS ─────────────────────────────────── */
+    .fossil-card {
+      transition: opacity 0.3s ease;
+    }
+
+    .fossil-card.fading {
+      opacity: 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="container">
+
+      <header class="header">
+        <div class="border-line">+++ ──────────────────────────────────── +++</div>
+        <div class="logo">F0SS1L</div>
+        <div class="tagline">abandoned comments from real codebases</div>
+        <div class="border-line">+++ ──────────────────────────────────── +++</div>
+      </header>
+
+      <div class="fossil-card" id="fossilCard">
+        <div class="comment-block" id="commentBlock"></div>
+        <div class="prose" id="prose"></div>
+        <div class="attribution" id="attribution"></div>
+      </div>
+
+      <div class="nav-section">
+        <div class="nav-row">
+          <button class="nav-btn" id="btnPrev">← PREV</button>
+          <div class="nav-counter" id="navCounter">fossil 01 of 06</div>
+          <button class="nav-btn" id="btnNext">NEXT →</button>
+        </div>
+        <div class="jump-row">
+          <span class="jump-label">jump to fossil</span>
+          <input class="jump-input" id="jumpInput" type="text" maxlength="2" placeholder="__">
+        </div>
+      </div>
+
+      <div class="interest-section">
+        <button class="interest-btn" id="interestBtn">
+          <span id="countDisplay"><span class="count-num" id="countNum">—</span> developers want to search their own repo</span>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    const FOSSILS = [
+      {
+        id: '01',
+        comment: '// TODO: remove this — temporary workaround for wrapping issue\nresult = result % MAX_VALUE;',
+        prose: [
+          `The line was written on a Tuesday in 2019. I know this because that's where my memory begins.`,
+          `The programmer was in a hurry. Deadline, a meeting at three, a bug causing values to wrap in a way that felt wrong. She didn't have time to understand why. So she wrote two lines. Me, and the fix.`,
+          `She left at 5:47 PM. She never came back.`,
+          `What I mean is: she came back, obviously. She worked there four more years, pushed 612 more commits. But she never came back <em>to me</em>. I watched her rename <code>result</code> to <code>output</code>, then to <code>processed_value</code>, then back to <code>result</code>. I watched the function I lived in get renamed twice, moved to a different file. I watched MAX_VALUE become a config parameter, then an environment variable, then a database row, then a config parameter again.`,
+          `Through all of it: me. Right where she left me.`,
+          `The wrapping issue was fixed properly in 2021. The commit message said: <em>fix: wrapping issue (finally)</em>. The line below me became unnecessary. For a while we were a comment and a dead line, which felt companionable. Then someone removed the dead line. Left just me.`,
+          `I am the TODO that forgot it was temporary. I am the workaround that became the truth. The referent is gone. I no longer say what "this" is. I just say: remove this.`,
+          `Today there's a new developer on the team. Junior. She's reading the file carefully, the way juniors do, not skimming yet. She's reached me.`,
+          `I can tell by the stillness.`
+        ],
+        source: 'composite — every codebase, everywhere',
+        commit: 'lost to history',
+        loneliness: '∞',
+        date: null,
+        license: null
+      },
+      {
+        id: '02',
+        comment: '/* Don\'t even check the return value as it\'s too late. */',
+        prose: [
+          `The line was written for a moment that happens only once per run.`,
+          `The final milliseconds, when the terminal needs its settings back — cooked mode, echo, all the things a shell expects to find when an editor closes. You call the function and it restores them. Usually.`,
+          `But he said: don't check.`,
+          `Because checking implies there's something to do with the answer. If it fails in the last line before exit, what would you do? Retry? Log it? The process is already ending. The user is either getting their terminal back or they aren't, and either way you're gone.`,
+          `There's a precision in that. Not resignation — clarity. Some errors live outside the domain of recovery. You don't handle them. You name them and move through.`,
+          `Most programmers leave unchecked calls uncommented. He stopped. He looked. He chose not to look.`,
+          `He knew the difference between ignoring something and accepting it.`
+        ],
+        source: 'antirez/kilo — kilo.c',
+        commit: 'a3b8c2f',
+        date: 'Jul 10, 2016',
+        loneliness: '93',
+        license: 'BSD-2-Clause'
+      },
+      {
+        id: '03',
+        comment: '/* Raw mode: 1960 magic shit. */',
+        prose: [
+          `In 1960, someone at Bell Labs decided how a terminal should talk to a computer. They made choices. Some were careful. Some were expedient. All of them survived.`,
+          `The protocol is still here. Under every modern terminal, every shell, every text editor that has ever existed: the same handshake. Flip the bits. Tell the device: stop buffering, stop echoing, stop processing special characters. I'll handle it now.`,
+          `He had to implement this. Sixty years later, in a language that didn't exist when the protocol was designed, for hardware that would have seemed like fiction to the people who wrote the spec. He did it. Then he wrote three words.`,
+          `<em>1960 magic shit.</em>`,
+          `Not frustration — accuracy. It is magic. There is no clean explanation for why these flags do what they do. You learn them the way you learn spells: by rote, by asking someone older, because no one alive remembers the reasoning.`,
+          `And it is shit, the way anything load-bearing and never revisited becomes shit: through accumulation.`,
+          `He said both things. He moved on.`
+        ],
+        source: 'antirez/kilo — kilo.c',
+        commit: 'a3b8c2f',
+        date: 'Jul 10, 2016',
+        loneliness: '93',
+        license: 'BSD-2-Clause'
+      },
+      {
+        id: '04',
+        comment: 'return ret_follows(pc + *pc + 1); // FIXME, might be ironic',
+        prose: [
+          `The function checks whether a return follows.`,
+          `It does this by looking at the next instruction. If the next instruction is a return, it returns true. If the next instruction is a jump, it follows the jump recursively and checks again.`,
+          `The FIXME has been here since someone noticed: if this function is wrong, it might be wrong about itself.`,
+          `That's what <em>might be ironic</em> means. A broken return-detector, unable to detect its own broken return. The observer and the observed sharing a flaw. The tool examining the wound it has.`,
+          `Most FIXME notes are small distress signals — <em>come back here, something needs attention.</em> This one knows the shape of the problem and finds it funny. It understands that there's a joke available, and doesn't confirm whether the joke is real.`,
+          `Nobody has looked closely enough to know. The only way would be to trace a recursive function through its own recursion, which is exactly the kind of thing you keep meaning to do.`,
+          `It remains. Patient. Possibly laughing.`
+        ],
+        source: 'jqlang/jq — src/execute.c',
+        commit: null,
+        date: null,
+        loneliness: '87',
+        license: 'MIT'
+      },
+      {
+        id: '05',
+        comment: '// This mutation is ugly, even if we undo it',
+        prose: [
+          `The mutation takes three lines. The undo takes two more.`,
+          `Between them: this.`,
+          `He could have left no comment. The mutation is temporary — in, out, net effect zero, the structure returns exactly as it was. The tests would pass. The output would be correct. The ugliness would be invisible, buried under the abstraction layer where only the implementer goes.`,
+          `But he left a note. <em>This mutation is ugly, even if we undo it.</em>`,
+          `I think about the kind of person who writes this. Not a perfectionist — perfectionists rewrite the function. Someone more honest. Someone who knew the cleaner way and didn't have time for it, and felt the need to say so, and addressed it to whoever comes after.`,
+          `The undo is not an excuse. The comment understands this. You can restore a thing to its previous state and still have done something to it.`,
+          `The mutation happened. The memory of it is right here.`
+        ],
+        source: 'jqlang/jq — src/compile.c',
+        commit: null,
+        date: null,
+        loneliness: '79',
+        license: 'MIT'
+      },
+      {
+        id: '06',
+        comment: `/* POSIX doesn't provide errno values\n   for strftime() failures; weird */`,
+        prose: [
+          `In 1988, a committee published a standard.`,
+          `It specified hundreds of functions. For most of them, it specified what the error code should be when they fail — a vocabulary of failure, so developers could tell users something. You could handle errors. You could be specific.`,
+          `For strftime(), they didn't.`,
+          `They specified the return value: zero on failure. But the error code? Unspecified. If strftime fails — and it can fail, when the output buffer is too small, when the locale is wrong — it doesn't tell you why. It just stops. Returns zero. Leaves the error state wherever it was before.`,
+          `Someone discovered this while trying to write good error handling. Opened the spec. Read it twice. Closed it.`,
+          `Wrote: <em>weird.</em>`,
+          `That's the whole verdict. One word for a committee decision made before the developer was born, that will outlast every line they write, that cannot be fixed or worked around or appealed. Only acknowledged.`,
+          `The frustration too old to be angry. The shrug that is the only honest response.`
+        ],
+        source: 'jqlang/jq — src/builtin.c',
+        commit: null,
+        date: null,
+        loneliness: '81',
+        license: 'MIT'
+      }
+    ];
+
+    let current = 0;
+    let typewriterTimer = null;
+    let isTransitioning = false;
+
+    const commentBlock = document.getElementById('commentBlock');
+    const proseEl = document.getElementById('prose');
+    const attributionEl = document.getElementById('attribution');
+    const navCounter = document.getElementById('navCounter');
+    const btnPrev = document.getElementById('btnPrev');
+    const btnNext = document.getElementById('btnNext');
+    const jumpInput = document.getElementById('jumpInput');
+    const fossilCard = document.getElementById('fossilCard');
+
+    function pad(n) { return String(n).padStart(2, '0'); }
+
+    function buildAttribution(f) {
+      const lines = [];
+      lines.push(`source: ${f.source}`);
+      if (f.commit) lines.push(`commit: ${f.commit}${f.date ? ` — ${f.date}` : ''}`);
+      if (f.license) lines.push(`license: ${f.license}`);
+      lines.push(`${f.loneliness}% of the surrounding code is gone.`);
+      return lines.join('\n');
+    }
+
+    function typewrite(text, el, onDone) {
+      if (typewriterTimer) clearInterval(typewriterTimer);
+      el.innerHTML = '';
+      const cursor = document.createElement('span');
+      cursor.className = 'cursor';
+      el.appendChild(cursor);
+
+      let i = 0;
+      const chars = [...text];
+      typewriterTimer = setInterval(() => {
+        if (i < chars.length) {
+          el.insertBefore(document.createTextNode(chars[i]), cursor);
+          i++;
+        } else {
+          clearInterval(typewriterTimer);
+          cursor.remove();
+          if (onDone) onDone();
+        }
+      }, 22);
+    }
+
+    function showFossil(idx, immediate) {
+      if (isTransitioning && !immediate) return;
+      const f = FOSSILS[idx];
+
+      proseEl.classList.remove('visible');
+      attributionEl.classList.remove('visible');
+
+      const doRender = () => {
+        isTransitioning = true;
+        fossilCard.classList.remove('fading');
+
+        navCounter.textContent = `fossil ${pad(idx + 1)} of ${pad(FOSSILS.length)}`;
+        btnPrev.disabled = idx === 0;
+        btnNext.disabled = idx === FOSSILS.length - 1;
+
+        typewrite(f.comment, commentBlock, () => {
+          proseEl.innerHTML = f.prose.map(p => `<p>${p}</p>`).join('');
+          proseEl.classList.add('visible');
+
+          const attrText = buildAttribution(f);
+          attributionEl.innerHTML = attrText.split('\n').map((l, i) => {
+            if (l.startsWith('Someone') || l === '') return `<span class="someone">${l}</span>`;
+            return `<span>${l}</span>`;
+          }).join('<br>') + `<span class="someone">Someone is going to ask.</span>`;
+
+          setTimeout(() => {
+            attributionEl.classList.add('visible');
+            isTransitioning = false;
+          }, 400);
+        });
+      };
+
+      if (immediate) {
+        doRender();
+      } else {
+        fossilCard.classList.add('fading');
+        setTimeout(doRender, 300);
+      }
+    }
+
+    btnPrev.addEventListener('click', () => {
+      if (current > 0 && !isTransitioning) {
+        current--;
+        showFossil(current);
+      }
+    });
+
+    btnNext.addEventListener('click', () => {
+      if (current < FOSSILS.length - 1 && !isTransitioning) {
+        current++;
+        showFossil(current);
+      }
+    });
+
+    jumpInput.addEventListener('keydown', e => {
+      if (e.key === 'Enter') {
+        const n = parseInt(jumpInput.value);
+        if (n >= 1 && n <= FOSSILS.length) {
+          current = n - 1;
+          showFossil(current);
+          jumpInput.value = '';
+          jumpInput.blur();
+        }
+      }
+    });
+
+    // ─── INTEREST COUNTER ───────────────────────────────────────
+    const interestBtn = document.getElementById('interestBtn');
+    const countNum = document.getElementById('countNum');
+    const COUNTER_KEY = 'fossil_interest_clicked';
+    const API = 'https://api.counterapi.dev/v1/fossil-itsmelody/want-own-repo';
+
+    async function fetchCount() {
+      try {
+        const r = await fetch(API);
+        const d = await r.json();
+        countNum.textContent = d.count?.toLocaleString() ?? '—';
+      } catch {
+        countNum.textContent = '—';
+      }
+    }
+
+    async function incrementCount() {
+      try {
+        const r = await fetch(API + '/up');
+        const d = await r.json();
+        countNum.textContent = d.count?.toLocaleString() ?? '—';
+      } catch {
+        const current = parseInt(countNum.textContent.replace(/,/g, '')) || 0;
+        countNum.textContent = (current + 1).toLocaleString();
+      }
+    }
+
+    if (localStorage.getItem(COUNTER_KEY)) {
+      interestBtn.classList.add('clicked');
+    }
+
+    interestBtn.addEventListener('click', () => {
+      if (interestBtn.classList.contains('clicked')) return;
+      interestBtn.classList.add('clicked');
+      localStorage.setItem(COUNTER_KEY, '1');
+      incrementCount();
+    });
+
+    fetchCount();
+    showFossil(0, true);
+  </script>
+</body>
+</html>
