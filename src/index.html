@@ -724,14 +724,18 @@
     const introScreen = document.getElementById('introScreen');
     const initBtn = document.getElementById('initBtn');
 
+    document.documentElement.style.overflowY = 'hidden';
+
     initBtn.addEventListener('click', () => {
       introScreen.classList.add('hidden');
+      document.documentElement.style.overflowY = '';
       setTimeout(() => introScreen.remove(), 650);
     });
 
     document.addEventListener('keydown', e => {
       if (e.key === 'Enter' && !introScreen.classList.contains('hidden')) {
         introScreen.classList.add('hidden');
+        document.documentElement.style.overflowY = '';
         setTimeout(() => introScreen.remove(), 650);
       }
     });
