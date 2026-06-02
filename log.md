@@ -1,5 +1,11 @@
 # Log — Fossil
 
+## 2026-06-02 — Retro applied
+- memory.md rewritten: 7 fossils with correct numbering, current state, pre-deploy checklist, launch copy
+- Global CLAUDE.md: voice calibration rule (launch copy), permission-question-blocks-commit rule
+- Projects CLAUDE.md: em dash categorization rule (UI copy vs literary prose)
+- Files touched: memory.md, ~/CLAUDE.md, ~/Desktop/Projects/CLAUDE.md
+
 ## 2026-06-02 — Interest capture redesign + LinkedIn card
 - Counter redesigned: pre-click shows `[ 0 ]  Be the first commit.` with live count from API
 - Post-click: `[ N ]  developer(s) want to search their own repo.` + email field inline
