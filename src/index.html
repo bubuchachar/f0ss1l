@@ -108,19 +108,41 @@
       margin: 0 0 36px;
     }
 
+    .fossil-header {
+      display: flex;
+      border: 1px solid var(--green-dim);
+      margin-bottom: 28px;
+      min-height: 60px;
+    }
+
+    .fossil-number {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 28px;
+      color: var(--green-bright);
+      text-shadow: var(--glow);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px 18px;
+      min-width: 88px;
+      border-right: 1px solid var(--green-dim);
+      background: var(--green-faint);
+      flex-shrink: 0;
+    }
+
     .comment-block {
       font-family: 'Share Tech Mono', monospace;
       font-size: 15px;
       color: var(--green-bright);
       text-shadow: var(--glow);
       background: var(--green-faint);
-      border: 1px solid var(--green-dim);
+      border: none;
       padding: 16px 20px;
-      margin-bottom: 28px;
       min-height: 54px;
       line-height: 1.5;
       white-space: pre-wrap;
       word-break: break-all;
+      flex: 1;
     }
 
     .comment-block .cursor {
@@ -320,7 +342,10 @@
       </header>
 
       <div class="fossil-card" id="fossilCard">
-        <div class="comment-block" id="commentBlock"></div>
+        <div class="fossil-header">
+          <div class="fossil-number" id="fossilNumber">01</div>
+          <div class="comment-block" id="commentBlock"></div>
+        </div>
         <div class="prose" id="prose"></div>
         <div class="attribution" id="attribution"></div>
       </div>
@@ -469,6 +494,7 @@
     const proseEl = document.getElementById('prose');
     const attributionEl = document.getElementById('attribution');
     const navCounter = document.getElementById('navCounter');
+    const fossilNumber = document.getElementById('fossilNumber');
     const btnPrev = document.getElementById('btnPrev');
     const btnNext = document.getElementById('btnNext');
     const jumpInput = document.getElementById('jumpInput');
@@ -516,8 +542,10 @@
       const doRender = () => {
         isTransitioning = true;
         fossilCard.classList.remove('fading');
+        window.scrollTo({ top: 0, behavior: 'instant' });
 
         navCounter.textContent = `fossil ${pad(idx + 1)} of ${pad(FOSSILS.length)}`;
+        fossilNumber.textContent = pad(idx + 1);
         btnPrev.disabled = idx === 0;
         btnNext.disabled = idx === FOSSILS.length - 1;
 
@@ -558,7 +586,6 @@
     btnPrev.addEventListener('click', () => {
       if (current > 0 && !isTransitioning) {
         current--;
-        window.scrollTo(0, 0);
         showFossil(current);
       }
     });
@@ -566,7 +593,6 @@
     btnNext.addEventListener('click', () => {
       if (current < FOSSILS.length - 1 && !isTransitioning) {
         current++;
-        window.scrollTo(0, 0);
         showFossil(current);
       }
     });
