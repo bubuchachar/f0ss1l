@@ -602,8 +602,7 @@
 
     let liveCount = 0;
 
-    // Always show the question on load — count only appears after clicking
-    if (localStorage.getItem(COUNTER_KEY)) interestBtn.classList.add('clicked');
+    // Always start as question — never block clicks on load
     renderCountDisplay(liveCount, false);
 
     async function fetchCount() {
@@ -611,10 +610,7 @@
         const r = await fetch(API);
         const d = await r.json();
         liveCount = d.count ?? 0;
-        // Only update display if already clicked — don't overwrite the question
-        if (localStorage.getItem(COUNTER_KEY)) {
-          renderCountDisplay(liveCount, true);
-        }
+        // Don't overwrite the question state on load
       } catch {}
     }
 
@@ -632,8 +628,12 @@
     interestBtn.addEventListener('click', () => {
       if (interestBtn.classList.contains('clicked')) return;
       interestBtn.classList.add('clicked');
-      localStorage.setItem(COUNTER_KEY, '1');
-      incrementCount();
+      // Show count immediately with whatever we have, then update when API responds
+      renderCountDisplay(liveCount, true);
+      if (!localStorage.getItem(COUNTER_KEY)) {
+        localStorage.setItem(COUNTER_KEY, '1');
+        incrementCount();
+      }
     });
 
     fetchCount();
