@@ -6,7 +6,7 @@
   <title>F0SS1L — abandoned comments from real codebases</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323:wght@400&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Doto:wght@400&family=Share+Tech+Mono&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -20,8 +20,13 @@
       --glow-soft: 0 0 5px rgba(77, 255, 124, 0.35);
     }
 
-    html, body {
-      height: 100%;
+    html {
+      background: var(--black);
+      overflow-x: hidden;
+    }
+
+    body {
+      min-height: 100vh;
       background: var(--black);
       color: var(--green);
       font-family: 'Share Tech Mono', monospace;
@@ -86,14 +91,18 @@
     }
 
     .logo {
-      font-family: 'Press Start 2P', monospace;
-      font-size: clamp(24px, 6vw, 42px);
-      color: var(--green-bright);
-      text-shadow: var(--glow);
-      letter-spacing: 4px;
       margin: 16px 0 10px;
-      line-height: 1.4;
+      line-height: 1;
     }
+
+    .logo svg {
+      width: clamp(200px, 50vw, 420px);
+      height: auto;
+      fill: var(--green-bright);
+      filter: drop-shadow(0 0 6px rgba(0, 255, 65, 0.9)) drop-shadow(0 0 16px rgba(0, 255, 65, 0.5));
+    }
+
+
 
     .tagline {
       font-family: 'Share Tech Mono', monospace;
@@ -141,7 +150,8 @@
       min-height: 54px;
       line-height: 1.5;
       white-space: pre-wrap;
-      word-break: break-all;
+      word-break: normal;
+      overflow-wrap: break-word;
       flex: 1;
     }
 
@@ -161,7 +171,7 @@
     }
 
     .prose {
-      font-family: 'Share Tech Mono', monospace;
+      font-family: 'Doto', monospace;
       font-size: 15px;
       line-height: 1.5;
       color: var(--green);
@@ -186,7 +196,7 @@
       font-size: 12px;
       color: var(--green-dim);
       margin-top: 28px;
-      line-height: 1.8;
+      line-height: 1.4;
       opacity: 0;
       transition: opacity 0.8s ease 0.4s;
     }
@@ -218,7 +228,6 @@
     .nav-counter-mobile {
       display: none;
       text-align: center;
-      margin-bottom: 10px;
     }
 
     @media (max-width: 520px) {
@@ -226,7 +235,7 @@
       .nav-btn { flex: 1; text-align: center; padding: 10px 8px; }
       .nav-counter { display: none; }
       .nav-counter-mobile { display: block; }
-      .jump-row { flex-direction: column; gap: 6px; }
+      .jump-row { flex-direction: column; gap: 0; }
     }
 
     .nav-btn {
@@ -371,7 +380,7 @@
     }
 
     .intro-body {
-      font-family: 'Share Tech Mono', monospace;
+      font-family: 'Doto', monospace;
       font-size: 15px;
       line-height: 1.5;
       color: var(--green);
@@ -396,6 +405,21 @@
       color: var(--green-bright);
       text-shadow: var(--glow-soft);
       font-size: 16px;
+    }
+
+    .nav-logo {
+      height: 0.8em;
+      width: auto;
+      vertical-align: middle;
+      fill: var(--green-dim);
+    }
+
+    .inline-logo {
+      height: 0.67em;
+      width: auto;
+      vertical-align: middle;
+      fill: var(--green-bright);
+      filter: drop-shadow(0 0 4px rgba(0, 255, 65, 0.7));
     }
 
     .init-btn {
@@ -425,7 +449,7 @@
     <div class="intro-container">
       <div class="intro-header">
         <div class="border-line">+++ ──────────────────────────────────── +++</div>
-        <div class="logo">F0SS1L</div>
+        <div class="logo"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 67.5 10.5"><path d="M0,10.5V0h10.5v1.5H3v3h6v1.5H3v4.5H0Z"/><path d="M13.5,10.5v-1.5h-1.5V1.5h1.5V0h7.5v1.5h1.5v7.5h-1.5v1.5h-7.5ZM15,9h4.5v-4.5h-1.5v-1.5h1.5v-1.5h-4.5v4.5h1.5v1.5h-1.5v1.5ZM16.5,6v-1.5h1.5v1.5h-1.5Z"/><path d="M25.5,10.5v-1.5h-1.5v-1.5h3v1.5h4.5v-3h-6v-1.5h-1.5V1.5h1.5V0h7.5v1.5h1.5v1.5h-3v-1.5h-4.5v3h6v1.5h1.5v3h-1.5v1.5h-7.5Z"/><path d="M37.5,10.5v-1.5h-1.5v-1.5h3v1.5h4.5v-3h-6v-1.5h-1.5V1.5h1.5V0h7.5v1.5h1.5v1.5h-3v-1.5h-4.5v3h6v1.5h1.5v3h-1.5v1.5h-7.5Z"/><path d="M48,10.5v-1.5h3V3h-1.5v-1.5h1.5V0h3v9h3v1.5h-9Z"/><path d="M58.5,10.5V0h3v9h6v1.5h-9Z"/></svg></div>
         <div class="tagline">abandoned comments from real codebases</div>
         <div class="border-line">+++ ──────────────────────────────────── +++</div>
       </div>
@@ -433,8 +457,8 @@
         <p>Every codebase is a Ship of Theseus.</p>
         <p>Replace a function. Then the module. Then the architecture. At what point does it become something else? Nobody has a principled answer. The interesting zone is 1–99% — which is always where real codebases live. A continuous spectrum with a discontinuous social meaning.</p>
         <p>But code leaves traces.</p>
-        <p>Comments are the most honest writing a programmer produces. Nobody writes them to be read. No one's performing for an audience. <em>"fix," "wip," "ugh," "finally."</em> Involuntary poetry. Sometimes a comment meant to be temporary survives everything around it — pointing at a room that no longer exists.</p>
-        <p class="payoff">F0SS1L finds them.</p>
+        <p>Comments are the most honest writing a programmer produces. Nobody writes them to be read. No one's performing for an audience. <code>"fix," "wip," "ugh," "finally."</code> Involuntary poetry. Sometimes a comment meant to be temporary survives everything around it — pointing at a room that no longer exists.</p>
+        <p class="payoff"><svg class="inline-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 67.5 10.5"><path d="M0,10.5V0h10.5v1.5H3v3h6v1.5H3v4.5H0Z"/><path d="M13.5,10.5v-1.5h-1.5V1.5h1.5V0h7.5v1.5h1.5v7.5h-1.5v1.5h-7.5ZM15,9h4.5v-4.5h-1.5v-1.5h1.5v-1.5h-4.5v4.5h1.5v1.5h-1.5v1.5ZM16.5,6v-1.5h1.5v1.5h-1.5Z"/><path d="M25.5,10.5v-1.5h-1.5v-1.5h3v1.5h4.5v-3h-6v-1.5h-1.5V1.5h1.5V0h7.5v1.5h1.5v1.5h-3v-1.5h-4.5v3h6v1.5h1.5v3h-1.5v1.5h-7.5Z"/><path d="M37.5,10.5v-1.5h-1.5v-1.5h3v1.5h4.5v-3h-6v-1.5h-1.5V1.5h1.5V0h7.5v1.5h1.5v1.5h-3v-1.5h-4.5v3h6v1.5h1.5v3h-1.5v1.5h-7.5Z"/><path d="M48,10.5v-1.5h3V3h-1.5v-1.5h1.5V0h3v9h3v1.5h-9Z"/><path d="M58.5,10.5V0h3v9h6v1.5h-9Z"/></svg> finds them.</p>
       </div>
       <button class="init-btn" id="initBtn">[ INITIALIZE ]</button>
     </div>
@@ -445,7 +469,7 @@
 
       <header class="header">
         <div class="border-line">+++ ──────────────────────────────────── +++</div>
-        <div class="logo">F0SS1L</div>
+        <div class="logo"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 67.5 10.5"><path d="M0,10.5V0h10.5v1.5H3v3h6v1.5H3v4.5H0Z"/><path d="M13.5,10.5v-1.5h-1.5V1.5h1.5V0h7.5v1.5h1.5v7.5h-1.5v1.5h-7.5ZM15,9h4.5v-4.5h-1.5v-1.5h1.5v-1.5h-4.5v4.5h1.5v1.5h-1.5v1.5ZM16.5,6v-1.5h1.5v1.5h-1.5Z"/><path d="M25.5,10.5v-1.5h-1.5v-1.5h3v1.5h4.5v-3h-6v-1.5h-1.5V1.5h1.5V0h7.5v1.5h1.5v1.5h-3v-1.5h-4.5v3h6v1.5h1.5v3h-1.5v1.5h-7.5Z"/><path d="M37.5,10.5v-1.5h-1.5v-1.5h3v1.5h4.5v-3h-6v-1.5h-1.5V1.5h1.5V0h7.5v1.5h1.5v1.5h-3v-1.5h-4.5v3h6v1.5h1.5v3h-1.5v1.5h-7.5Z"/><path d="M48,10.5v-1.5h3V3h-1.5v-1.5h1.5V0h3v9h3v1.5h-9Z"/><path d="M58.5,10.5V0h3v9h6v1.5h-9Z"/></svg></div>
         <div class="tagline">abandoned comments from real codebases</div>
         <div class="border-line">+++ ──────────────────────────────────── +++</div>
       </header>
@@ -462,12 +486,12 @@
       <div class="nav-section">
         <div class="nav-row">
           <button class="nav-btn" id="btnPrev">← PREV</button>
-          <div class="nav-counter" id="navCounter">fossil 01 of 06</div>
+          <div class="nav-counter" id="navCounter"><svg class="nav-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 67.5 10.5"><path d="M0,10.5V0h10.5v1.5H3v3h6v1.5H3v4.5H0Z"/><path d="M13.5,10.5v-1.5h-1.5V1.5h1.5V0h7.5v1.5h1.5v7.5h-1.5v1.5h-7.5ZM15,9h4.5v-4.5h-1.5v-1.5h1.5v-1.5h-4.5v4.5h1.5v1.5h-1.5v1.5ZM16.5,6v-1.5h1.5v1.5h-1.5Z"/><path d="M25.5,10.5v-1.5h-1.5v-1.5h3v1.5h4.5v-3h-6v-1.5h-1.5V1.5h1.5V0h7.5v1.5h1.5v1.5h-3v-1.5h-4.5v3h6v1.5h1.5v3h-1.5v1.5h-7.5Z"/><path d="M37.5,10.5v-1.5h-1.5v-1.5h3v1.5h4.5v-3h-6v-1.5h-1.5V1.5h1.5V0h7.5v1.5h1.5v1.5h-3v-1.5h-4.5v3h6v1.5h1.5v3h-1.5v1.5h-7.5Z"/><path d="M48,10.5v-1.5h3V3h-1.5v-1.5h1.5V0h3v9h3v1.5h-9Z"/><path d="M58.5,10.5V0h3v9h6v1.5h-9Z"/></svg> 01 of 06</div>
           <button class="nav-btn" id="btnNext">NEXT →</button>
         </div>
         <div class="jump-row">
-          <div class="nav-counter nav-counter-mobile" id="navCounterMobile">fossil 01 of 06</div>
-          <span class="jump-label">jump to fossil</span>
+          <div class="nav-counter nav-counter-mobile" id="navCounterMobile"><svg class="nav-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 67.5 10.5"><path d="M0,10.5V0h10.5v1.5H3v3h6v1.5H3v4.5H0Z"/><path d="M13.5,10.5v-1.5h-1.5V1.5h1.5V0h7.5v1.5h1.5v7.5h-1.5v1.5h-7.5ZM15,9h4.5v-4.5h-1.5v-1.5h1.5v-1.5h-4.5v4.5h1.5v1.5h-1.5v1.5ZM16.5,6v-1.5h1.5v1.5h-1.5Z"/><path d="M25.5,10.5v-1.5h-1.5v-1.5h3v1.5h4.5v-3h-6v-1.5h-1.5V1.5h1.5V0h7.5v1.5h1.5v1.5h-3v-1.5h-4.5v3h6v1.5h1.5v3h-1.5v1.5h-7.5Z"/><path d="M37.5,10.5v-1.5h-1.5v-1.5h3v1.5h4.5v-3h-6v-1.5h-1.5V1.5h1.5V0h7.5v1.5h1.5v1.5h-3v-1.5h-4.5v3h6v1.5h1.5v3h-1.5v1.5h-7.5Z"/><path d="M48,10.5v-1.5h3V3h-1.5v-1.5h1.5V0h3v9h3v1.5h-9Z"/><path d="M58.5,10.5V0h3v9h6v1.5h-9Z"/></svg> 01 of 06</div>
+          <span class="jump-label">jump to <svg class="nav-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 67.5 10.5"><path d="M0,10.5V0h10.5v1.5H3v3h6v1.5H3v4.5H0Z"/><path d="M13.5,10.5v-1.5h-1.5V1.5h1.5V0h7.5v1.5h1.5v7.5h-1.5v1.5h-7.5ZM15,9h4.5v-4.5h-1.5v-1.5h1.5v-1.5h-4.5v4.5h1.5v1.5h-1.5v1.5ZM16.5,6v-1.5h1.5v1.5h-1.5Z"/><path d="M25.5,10.5v-1.5h-1.5v-1.5h3v1.5h4.5v-3h-6v-1.5h-1.5V1.5h1.5V0h7.5v1.5h1.5v1.5h-3v-1.5h-4.5v3h6v1.5h1.5v3h-1.5v1.5h-7.5Z"/><path d="M37.5,10.5v-1.5h-1.5v-1.5h3v1.5h4.5v-3h-6v-1.5h-1.5V1.5h1.5V0h7.5v1.5h1.5v1.5h-3v-1.5h-4.5v3h6v1.5h1.5v3h-1.5v1.5h-7.5Z"/><path d="M48,10.5v-1.5h3V3h-1.5v-1.5h1.5V0h3v9h3v1.5h-9Z"/><path d="M58.5,10.5V0h3v9h6v1.5h-9Z"/></svg></span>
           <input class="jump-input" id="jumpInput" type="text" maxlength="2" placeholder="__">
         </div>
       </div>
@@ -490,10 +514,10 @@
           `The line was written on a Tuesday in 2019. I know this because that's where my memory begins.`,
           `The programmer was in a hurry. Deadline, a meeting at three, a bug causing values to wrap in a way that felt wrong. She didn't have time to understand why. So she wrote two lines. Me, and the fix.`,
           `She left at 5:47 PM. She never came back.`,
-          `What I mean is: she came back, obviously. She worked there four more years, pushed 612 more commits. But she never came back <em>to me</em>. I watched her rename <code>result</code> to <code>output</code>, then to <code>processed_value</code>, then back to <code>result</code>. I watched the function I lived in get renamed twice, moved to a different file. I watched MAX_VALUE become a config parameter, then an environment variable, then a database row, then a config parameter again.`,
+          `What I mean is: she came back, obviously. She worked there four more years, pushed 612 more commits. But she never came back <em>to me</em>. I watched her rename <code>result</code> to <code>output</code>, then to <code>processed_value</code>, then back to <code>result</code>. I watched the function I lived in get renamed twice, moved to a different file. I watched <code>MAX_VALUE</code> become a config parameter, then an environment variable, then a database row, then a config parameter again.`,
           `Through all of it: me. Right where she left me.`,
-          `The wrapping issue was fixed properly in 2021. The commit message said: <em>fix: wrapping issue (finally)</em>. The line below me became unnecessary. For a while we were a comment and a dead line, which felt companionable. Then someone removed the dead line. Left just me.`,
-          `I am the TODO that forgot it was temporary. I am the workaround that became the truth. The referent is gone. I no longer say what "this" is. I just say: remove this.`,
+          `The wrapping issue was fixed properly in 2021. The commit message said: <code>fix: wrapping issue (finally)</code>. The line below me became unnecessary. For a while we were a comment and a dead line, which felt companionable. Then someone removed the dead line. Left just me.`,
+          `I am the <code>TODO</code> that forgot it was temporary. I am the workaround that became the truth. The referent is gone. I no longer say what "this" is. I just say: remove this.`,
           `Today there's a new developer on the team. Junior. She's reading the file carefully, the way juniors do, not skimming yet. She's reached me.`,
           `I can tell by the stillness.`
         ],
@@ -505,6 +529,25 @@
       },
       {
         id: '02',
+        comment: `// No session — sign in anonymously, no login screen needed`,
+        prose: [
+          `Every time the app opens, it runs the same check. Is anyone here? It looks for a token, a saved session, a name. Something that proves a person came before.`,
+          `Usually there's nothing. The user is new, or on a different device, or the storage was cleared. No history yet.`,
+          `The instruction is: in that case, don't ask.`,
+          `Not: show a form. Not: redirect to sign up. Sign in anonymously — give them a real session, just not one attached to a name. Then get out of the way.`,
+          `There's a whole argument compressed into "no login screen needed." Someone thought about friction. Someone thought about the moment a person opens a photo journal for the first time, wanting to keep something, and decided: not here. That moment shouldn't start with a password field.`,
+          `<em>Anonymous</em> in the code means: you exist in the system, the system just doesn't know your name yet. A UUID. A row in a database, waiting.`,
+          `The photos accumulate. The session stays. The anonymity doesn't disappear — it just becomes less accurate. The record fills in around it.`,
+          `The comment doesn't say what happens if they never log in. It says: that's fine too.`
+        ],
+        source: 'bubuchachar/memori-v2 — app/src/App.tsx',
+        commit: '8c11a85',
+        date: 'Mar 27, 2026',
+        loneliness: '34',
+        license: null
+      },
+      {
+        id: '03',
         comment: '/* Don\'t even check the return value as it\'s too late. */',
         prose: [
           `The line was written for a moment that happens only once per run.`,
@@ -522,7 +565,7 @@
         license: 'BSD-2-Clause'
       },
       {
-        id: '03',
+        id: '04',
         comment: '/* Raw mode: 1960 magic shit. */',
         prose: [
           `In 1960, someone at Bell Labs decided how a terminal should talk to a computer. They made choices. Some were careful. Some were expedient. All of them survived.`,
@@ -540,7 +583,7 @@
         license: 'BSD-2-Clause'
       },
       {
-        id: '04',
+        id: '05',
         comment: 'return ret_follows(pc + *pc + 1); // FIXME, might be ironic',
         prose: [
           `The function checks whether a return follows.`,
@@ -558,7 +601,7 @@
         license: 'MIT'
       },
       {
-        id: '05',
+        id: '06',
         comment: '// This mutation is ugly, even if we undo it',
         prose: [
           `The mutation takes three lines. The undo takes two more.`,
@@ -576,7 +619,7 @@
         license: 'MIT'
       },
       {
-        id: '06',
+        id: '07',
         comment: `/* POSIX doesn't provide errno values\n   for strftime() failures; weird */`,
         prose: [
           `In 1988, a committee published a standard.`,
@@ -672,9 +715,10 @@
         fossilCard.classList.remove('fading');
         window.scrollTo({ top: 0, behavior: 'instant' });
 
-        const label = `fossil ${pad(idx + 1)} of ${pad(FOSSILS.length)}`;
-        navCounter.textContent = label;
-        navCounterMobile.textContent = label;
+        const logoSvg = `<svg class="nav-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 67.5 10.5"><path d="M0,10.5V0h10.5v1.5H3v3h6v1.5H3v4.5H0Z"/><path d="M13.5,10.5v-1.5h-1.5V1.5h1.5V0h7.5v1.5h1.5v7.5h-1.5v1.5h-7.5ZM15,9h4.5v-4.5h-1.5v-1.5h1.5v-1.5h-4.5v4.5h1.5v1.5h-1.5v1.5ZM16.5,6v-1.5h1.5v1.5h-1.5Z"/><path d="M25.5,10.5v-1.5h-1.5v-1.5h3v1.5h4.5v-3h-6v-1.5h-1.5V1.5h1.5V0h7.5v1.5h1.5v1.5h-3v-1.5h-4.5v3h6v1.5h1.5v3h-1.5v1.5h-7.5Z"/><path d="M37.5,10.5v-1.5h-1.5v-1.5h3v1.5h4.5v-3h-6v-1.5h-1.5V1.5h1.5V0h7.5v1.5h1.5v1.5h-3v-1.5h-4.5v3h6v1.5h1.5v3h-1.5v1.5h-7.5Z"/><path d="M48,10.5v-1.5h3V3h-1.5v-1.5h1.5V0h3v9h3v1.5h-9Z"/><path d="M58.5,10.5V0h3v9h6v1.5h-9Z"/></svg>`;
+        const label = `${logoSvg} ${pad(idx + 1)} of ${pad(FOSSILS.length)}`;
+        navCounter.innerHTML = label;
+        navCounterMobile.innerHTML = label;
         fossilNumber.textContent = pad(idx + 1);
         btnPrev.disabled = idx === 0;
         btnNext.disabled = idx === FOSSILS.length - 1;

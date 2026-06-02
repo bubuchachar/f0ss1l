@@ -1,5 +1,22 @@
 # Log — Fossil
 
+## 2026-05-31 — Session start
+- Committed dangling log.md entry (CLAUDE.md update) left unstaged from previous session
+- Files touched: log.md
+
+## 2026-05-31 — Typography, logo SVG, scroll fix, fossil 02
+- Swapped Share Tech Mono → Doto for prose/story text only (.prose, .intro-body); UI stays Share Tech Mono
+- Replaced text logo with kerning-corrected SVG (f0ss1l.svg from DBS/Grant Call); inline SVG in both header instances and payoff line
+- SVG logo also used in nav counter and "jump to" label, replacing the word "fossil"
+- Scroll-to-top on prev/next fixed — root cause was height:100% on html/body making body the scroll container; switched to min-height:100vh on body so window is the scroll container
+- Fixed horizontal scrollbar — added overflow-x:hidden to html element
+- word-break:break-all → word-break:normal on comment block (was splitting words mid-character on mobile)
+- Attribution line-height tightened: 1.8 → 1.4
+- Mobile nav counter + jump row gap reduced to 0
+- `<code>` tag introduced as highlight style for inline code terms (MAX_VALUE, TODO, fix: wrapping issue (finally), "fix/wip/ugh/finally" quotes)
+- Added fossil 02: `// No session — sign in anonymously, no login screen needed` (bubuchachar/memori-v2, commit 8c11a85, Mar 27 2026); shifted old 02–06 to 03–07; now 7 fossils total
+- Files touched: src/index.html, assets/f0ss1l.svg, log.md
+
 ## 2026-05-31 — Project created
 - Concept emerged from free-play session on Ship of Theseus applied to code
 - Wrote flash fiction piece `// TODO: remove this` as the seed
