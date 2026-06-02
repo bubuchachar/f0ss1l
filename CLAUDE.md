@@ -57,7 +57,7 @@ Permitted files in project root:
 - CLAUDE.md
 - memory.md
 - log.md
-- index.html
+- artifacts.html
 - tasks.md
 - .gitignore
 - .impeccable.md
