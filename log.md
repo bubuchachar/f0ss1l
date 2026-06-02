@@ -1,5 +1,38 @@
 # Log — Fossil
 
+## 2026-06-02 — OG tags + routing fix for LinkedIn preview
+- Added og:title, og:description, og:url, og:type, twitter:card meta tags to src/index.html
+- Root cause: no OG tags meant LinkedIn scraped stale artifact index title "Fossil — Artifacts"
+- vercel.json: added explicit root rewrite for "/" in addition to "/(.*)"
+- linkedin-card.html: background changed to #0d1117, body margin: 0 auto for centering
+- Deployed manually via vercel --prod (GitHub auto-deploy not wired up)
+- LinkedIn Post Inspector needed to clear cached preview: linkedin.com/post-inspector
+- Files touched: src/index.html, vercel.json, assets/linkedin-card.html
+
+## 2026-06-02 — Fix Vercel routing: rename root index.html
+- Root index.html was being served by Vercel directly for / before rewrite rule could apply
+- Renamed to artifacts.html so the rewrite to src/index.html works correctly
+- Updated CLAUDE.md allowlist accordingly
+- Files touched: index.html → artifacts.html, CLAUDE.md
+
+## 2026-06-02 — v2 heading updated
+- "v2 — The Tool" → "V2: The Tool" per user direction
+- Files touched: README.md
+
+## 2026-06-02 — Table Comment + Source columns left-aligned
+- Added :---- colons to Comment and Source columns in markdown table separator
+- Files touched: README.md
+
+## 2026-06-02 — F0SS1L no plural
+- Removed 's' from F0SS1Ls in heading and "seven hand-curated" line
+- F0SS1L treated as a brand name, doesn't pluralise
+- Files touched: README.md
+
+## 2026-06-02 — fossil → F0SS1L throughout README
+- Replaced all bare "fossil/fossils" with "F0SS1L/F0SS1Ls" in README body copy
+- Sections: The Fossils heading, description, "every fossil ends", how it works, interest capture
+- Files touched: README.md
+
 ## 2026-06-02 — Divider gaps fixed, green someone SVG, banner.svg removed
 - Divider: left text x=4, rect x=36 to x=764, right text text-anchor=end x=796 — symmetric gaps both sides
 - Created assets/someone.svg: "Someone is going to ask." in #4DFF7C, centered
