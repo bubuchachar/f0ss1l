@@ -543,7 +543,7 @@
               }, 150);
             }
           };
-          setTimeout(revealNext, 100);
+          setTimeout(revealNext, 600);
         });
       };
 
@@ -558,6 +558,7 @@
     btnPrev.addEventListener('click', () => {
       if (current > 0 && !isTransitioning) {
         current--;
+        window.scrollTo(0, 0);
         showFossil(current);
       }
     });
@@ -565,6 +566,7 @@
     btnNext.addEventListener('click', () => {
       if (current < FOSSILS.length - 1 && !isTransitioning) {
         current++;
+        window.scrollTo(0, 0);
         showFossil(current);
       }
     });
@@ -599,17 +601,20 @@
     }
 
     let liveCount = 0;
-    const hasClicked = !!localStorage.getItem(COUNTER_KEY);
 
-    if (hasClicked) interestBtn.classList.add('clicked');
-    renderCountDisplay(liveCount, hasClicked);
+    // Always show the question on load — count only appears after clicking
+    if (localStorage.getItem(COUNTER_KEY)) interestBtn.classList.add('clicked');
+    renderCountDisplay(liveCount, false);
 
     async function fetchCount() {
       try {
         const r = await fetch(API);
         const d = await r.json();
         liveCount = d.count ?? 0;
-        renderCountDisplay(liveCount, !!localStorage.getItem(COUNTER_KEY));
+        // Only update display if already clicked — don't overwrite the question
+        if (localStorage.getItem(COUNTER_KEY)) {
+          renderCountDisplay(liveCount, true);
+        }
       } catch {}
     }
 
