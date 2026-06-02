@@ -30,5 +30,5 @@
   <text x="1118" y="210" font-family="monospace" font-size="14" fill="#1A6B35" opacity="0.7">+++</text>
 
   <!-- Tagline -->
-  <text x="600" y="255" text-anchor="middle" font-family="monospace" font-size="13" fill="#1A6B35" letter-spacing="4" opacity="0.7">abandoned comments from real codebases</text>
+  <text x="600" y="258" text-anchor="middle" font-family="monospace" font-size="22" fill="#1A6B35" letter-spacing="4" opacity="0.7">abandoned comments from real codebases</text>
 </svg>
