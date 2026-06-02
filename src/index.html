@@ -11,20 +11,21 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --green: #00FF41;
-      --green-dim: #00882B;
-      --green-faint: #003D12;
-      --black: #000000;
-      --glow: 0 0 8px rgba(0, 255, 65, 0.7), 0 0 20px rgba(0, 255, 65, 0.3);
-      --glow-soft: 0 0 6px rgba(0, 255, 65, 0.4);
+      --green: #4DFF7C;
+      --green-bright: #00FF41;
+      --green-dim: #1A6B35;
+      --green-faint: #071A0C;
+      --black: #060E06;
+      --glow: 0 0 8px rgba(0, 255, 65, 0.6), 0 0 20px rgba(0, 255, 65, 0.2);
+      --glow-soft: 0 0 5px rgba(77, 255, 124, 0.35);
     }
 
     html, body {
       height: 100%;
       background: var(--black);
       color: var(--green);
-      font-family: 'VT323', monospace;
-      font-size: 20px;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 15px;
       line-height: 1.6;
       overflow-x: hidden;
     }
@@ -87,7 +88,7 @@
     .logo {
       font-family: 'Press Start 2P', monospace;
       font-size: clamp(24px, 6vw, 42px);
-      color: var(--green);
+      color: var(--green-bright);
       text-shadow: var(--glow);
       letter-spacing: 4px;
       margin: 16px 0 10px;
@@ -110,7 +111,7 @@
     .comment-block {
       font-family: 'Share Tech Mono', monospace;
       font-size: 15px;
-      color: var(--green);
+      color: var(--green-bright);
       text-shadow: var(--glow);
       background: var(--green-faint);
       border: 1px solid var(--green-dim);
@@ -138,9 +139,9 @@
     }
 
     .prose {
-      font-family: 'VT323', monospace;
-      font-size: 22px;
-      line-height: 1.7;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 15px;
+      line-height: 1.9;
       color: var(--green);
       opacity: 0;
       transition: opacity 0.8s ease;
@@ -170,7 +171,8 @@
     .attribution.visible { opacity: 1; }
 
     .attribution .someone {
-      color: var(--green);
+      color: var(--green-bright);
+      text-shadow: var(--glow-soft);
       font-size: 13px;
       margin-top: 4px;
       display: block;
