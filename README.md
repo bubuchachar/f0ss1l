@@ -2,12 +2,11 @@
 
 <img src="assets/banner.svg?v=2" width="800" alt="F0SS1L — abandoned comments from real codebases" />
 
-[![Live](https://img.shields.io/badge/live-f0ss1l.vercel.app-00FF41?style=flat-square&labelColor=060E06)](https://f0ss1l.vercel.app)
-![Status](https://img.shields.io/badge/status-v1%20shipped-4DFF7C?style=flat-square&labelColor=060E06)
+[f0ss1l.vercel.app](https://f0ss1l.vercel.app) · v1 shipped
 
 </div>
 
----
+<div align="center"><sub>+++ ───────────────────────────────────────────────────────────────────── +++</sub></div>
 
 Every codebase is a Ship of Theseus.
 
@@ -17,7 +16,7 @@ Comments are the most honest writing a programmer produces. Nobody writes them t
 
 **F0SS1L finds them.**
 
----
+<div align="center"><sub>+++ ───────────────────────────────────────────────────────────────────── +++</sub></div>
 
 ## The Fossils
 
@@ -35,7 +34,7 @@ Every fossil ends the same way.
 | 06 | `// This mutation is ugly, even if we undo it` | jqlang/jq | 87% |
 | 07 | `/* POSIX doesn't provide errno values for strftime() failures; weird */` | jqlang/jq | 92% |
 
----
+<div align="center"><sub>+++ ───────────────────────────────────────────────────────────────────── +++</sub></div>
 
 ## How It Works
 
@@ -43,7 +42,7 @@ v1 is fully static. Seven hand-curated fossils, each with a literary piece writt
 
 The interest capture at the bottom of each fossil measures demand for v2.
 
----
+<div align="center"><sub>+++ ───────────────────────────────────────────────────────────────────── +++</sub></div>
 
 ## v2 — The Tool
 
@@ -51,7 +50,7 @@ v2 will accept any public git repo URL and surface its oldest surviving comments
 
 Threshold for building v2: watching signups.
 
----
+<div align="center"><sub>+++ ───────────────────────────────────────────────────────────────────── +++</sub></div>
 
 ## Stack
 
@@ -64,7 +63,7 @@ assets/
   f0ss1l.svg     — logo (kerning-corrected by hand)
 ```
 
----
+<div align="center"><sub>+++ ───────────────────────────────────────────────────────────────────── +++</sub></div>
 
 ## Provenance
 
@@ -72,7 +71,7 @@ The concept came out of a free-play session on the Ship of Theseus applied to co
 
 F0SS1L uses 0 and 1 in place of O and I — not arbitrarily. 0 and 1 are binary, the oldest layer of any codebase.
 
----
+<div align="center"><sub>+++ ───────────────────────────────────────────────────────────────────── +++</sub></div>
 
 <div align="center">
 <sub>Someone is going to ask.</sub>
