@@ -2,59 +2,46 @@
 <html>
 <head>
   <meta charset="UTF-8">
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
-
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
       width: 1080px;
       height: 1080px;
-      background:
-        radial-gradient(circle, rgba(0, 255, 65, 0.35) 1px, transparent 1px),
-        radial-gradient(circle, rgba(0, 255, 65, 0.10) 3px, transparent 3px),
-        #060E06;
-      background-size: 80px 80px, 80px 80px, auto;
+      background-color: #060E06;
+      background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='20' cy='20' r='1.5' fill='%2300FF41' fill-opacity='0.08'/%3E%3C/svg%3E");
       display: flex;
       align-items: center;
       justify-content: center;
       overflow: hidden;
-    }
-
-    .card {
-      width: 100%;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 100px;
-      gap: 64px;
-      position: relative;
+      font-family: 'Share Tech Mono', monospace;
+      color: #4DFF7C;
     }
 
     /* CRT scanlines */
-    .card::before {
+    body::after {
       content: '';
-      position: absolute;
+      position: fixed;
       inset: 0;
       background: repeating-linear-gradient(
-        to bottom,
-        transparent,
-        transparent 3px,
-        rgba(0,0,0,0.08) 3px,
-        rgba(0,0,0,0.08) 4px
+        to bottom, transparent, transparent 3px,
+        rgba(0,0,0,0.08) 3px, rgba(0,0,0,0.08) 4px
       );
       pointer-events: none;
     }
 
-    .border-line {
-      font-family: 'Share Tech Mono', monospace;
-      font-size: 18px;
-      color: #1A6B35;
-      letter-spacing: 2px;
-      opacity: 0.7;
+    .inner {
+      width: 880px;
       text-align: center;
+    }
+
+    .border-line {
+      color: #1A6B35;
+      font-size: 13px;
+      letter-spacing: 2px;
+      margin: 20px 0;
+      opacity: 0.7;
     }
 
     .logo svg {
@@ -62,11 +49,20 @@
       height: auto;
       fill: #00FF41;
       filter: drop-shadow(0 0 12px rgba(0,255,65,0.9)) drop-shadow(0 0 32px rgba(0,255,65,0.4));
+      margin: 24px 0;
+    }
+
+    .tagline {
+      font-size: 13px;
+      color: #1A6B35;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      margin: 0 0 20px;
+      opacity: 0.7;
     }
 
     .copy {
-      font-family: 'Share Tech Mono', monospace;
-      text-align: center;
+      margin-top: 64px;
       display: flex;
       flex-direction: column;
       gap: 24px;
@@ -75,42 +71,39 @@
     .line1 {
       font-size: 28px;
       color: #4DFF7C;
-      line-height: 1.5;
-      letter-spacing: 0.5px;
+      line-height: 1.6;
     }
 
     .line2 {
       font-size: 28px;
       color: #00FF41;
       text-shadow: 0 0 8px rgba(0,255,65,0.8);
-      letter-spacing: 1px;
     }
 
     .url {
-      font-family: 'Share Tech Mono', monospace;
-      font-size: 18px;
+      font-size: 16px;
       color: #4DFF7C;
-      opacity: 0.5;
-      letter-spacing: 1px;
-      position: absolute;
-      bottom: 72px;
+      opacity: 0.4;
+      margin-top: 48px;
+      letter-spacing: 2px;
     }
   </style>
 </head>
 <body>
-  <div class="card">
+  <div class="inner">
+    <div class="border-line">+++ ──────────────────────────────────────────────────────────────────── +++</div>
     <div class="logo">
-      <div class="border-line">+++ ──────────────────────────────────── +++</div>
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 67.5 10.5" style="margin: 24px 0;">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 67.5 10.5">
         <path d="M0,10.5V0h10.5v1.5H3v3h6v1.5H3v4.5H0Z"/>
+        <path d="M13.5,10.5v-1.5h-1.5V1.5h1.5V0h7.5v1.5h1.5v7.5h-1.5v1.5h-7.5ZM15,9h4.5v-4.5h-1.5v-1.5h1.5v-1.5h-4.5v4.5h1.5v1.5h-1.5v1.5ZM16.5,6v-1.5h1.5v1.5h-1.5Z"/>
         <path d="M25.5,10.5v-1.5h-1.5v-1.5h3v1.5h4.5v-3h-6v-1.5h-1.5V1.5h1.5V0h7.5v1.5h1.5v1.5h-3v-1.5h-4.5v3h6v1.5h1.5v3h-1.5v1.5h-7.5Z"/>
         <path d="M37.5,10.5v-1.5h-1.5v-1.5h3v1.5h4.5v-3h-6v-1.5h-1.5V1.5h1.5V0h7.5v1.5h1.5v1.5h-3v-1.5h-4.5v3h6v1.5h1.5v3h-1.5v1.5h-7.5Z"/>
         <path d="M48,10.5v-1.5h3V3h-1.5v-1.5h1.5V0h3v9h3v1.5h-9Z"/>
         <path d="M58.5,10.5V0h3v9h6v1.5h-9Z"/>
-        <path d="M13.5,10.5v-1.5h-1.5V1.5h1.5V0h7.5v1.5h1.5v7.5h-1.5v1.5h-7.5ZM15,9h4.5v-4.5h-1.5v-1.5h1.5v-1.5h-4.5v4.5h1.5v1.5h-1.5v1.5ZM16.5,6v-1.5h1.5v1.5h-1.5Z"/>
       </svg>
-      <div class="border-line">+++ ──────────────────────────────────── +++</div>
     </div>
+    <div class="tagline">abandoned comments from real codebases</div>
+    <div class="border-line">+++ ──────────────────────────────────────────────────────────────────── +++</div>
 
     <div class="copy">
       <div class="line1">Code is written by people.<br>Some of it gets left behind.</div>
