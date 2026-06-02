@@ -11,6 +11,13 @@
 - Moved all 6 fossil literary pieces into src/fossils/ (01–06)
 - Global memory project_fossil.md migrated into project memory.md
 
+## 2026-05-31 — CLAUDE.md updated
+- Corrected brand colors: background #000000 → #060E06, split green into accent (#00FF41) and body (#4DFF7C)
+- Typography: updated to reflect Press Start 2P (logo) + Doto pending (body)
+- Resolved two open questions: counter = click only, logo font = Press Start 2P
+- Added pending tasks: Doto swap, F0SS1L 01 provenance, deploy
+- Files touched: CLAUDE.md
+
 ## 2026-05-31 — Font note
 - Next session: swap Share Tech Mono → Doto for body text
 - Also remove dead VT323 import from font link tag
