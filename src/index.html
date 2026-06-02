@@ -341,9 +341,105 @@
     .fossil-card.fading {
       opacity: 0;
     }
+
+    /* ─── INTRO ───────────────────────────────────────── */
+    .intro-screen {
+      position: fixed;
+      inset: 0;
+      background: var(--black);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 24px;
+      z-index: 100;
+      transition: opacity 0.6s ease;
+    }
+
+    .intro-screen.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .intro-container {
+      width: 100%;
+      max-width: 660px;
+    }
+
+    .intro-header {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+
+    .intro-body {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 15px;
+      line-height: 1.5;
+      color: var(--green);
+      margin-bottom: 48px;
+    }
+
+    .intro-body p {
+      margin-bottom: 28px;
+    }
+
+    .intro-body p:last-child {
+      margin-bottom: 0;
+    }
+
+    .intro-body em {
+      font-style: italic;
+      color: var(--green-bright);
+      text-shadow: var(--glow-soft);
+    }
+
+    .intro-body .payoff {
+      color: var(--green-bright);
+      text-shadow: var(--glow-soft);
+      font-size: 16px;
+    }
+
+    .init-btn {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 14px;
+      color: var(--green-bright);
+      background: none;
+      border: 1px solid var(--green-dim);
+      padding: 14px 40px;
+      cursor: pointer;
+      letter-spacing: 3px;
+      display: block;
+      margin: 0 auto;
+      transition: all 0.15s;
+      text-shadow: var(--glow-soft);
+    }
+
+    .init-btn:hover {
+      border-color: var(--green-bright);
+      background: var(--green-faint);
+      text-shadow: var(--glow);
+    }
   </style>
 </head>
 <body>
+  <div class="intro-screen" id="introScreen">
+    <div class="intro-container">
+      <div class="intro-header">
+        <div class="border-line">+++ ──────────────────────────────────── +++</div>
+        <div class="logo">F0SS1L</div>
+        <div class="tagline">abandoned comments from real codebases</div>
+        <div class="border-line">+++ ──────────────────────────────────── +++</div>
+      </div>
+      <div class="intro-body">
+        <p>Every codebase is a Ship of Theseus.</p>
+        <p>Replace a function. Then the module. Then the architecture. At what point does it become something else? Nobody has a principled answer. The interesting zone is 1–99% — which is always where real codebases live. A continuous spectrum with a discontinuous social meaning.</p>
+        <p>But code leaves traces.</p>
+        <p>Comments are the most honest writing a programmer produces. Nobody writes them to be read. No one's performing for an audience. <em>"fix," "wip," "ugh," "finally."</em> Involuntary poetry. Sometimes a comment meant to be temporary survives everything around it — pointing at a room that no longer exists.</p>
+        <p class="payoff">F0SS1L finds them.</p>
+      </div>
+      <button class="init-btn" id="initBtn">[ INITIALIZE ]</button>
+    </div>
+  </div>
+
   <div class="page">
     <div class="container">
 
@@ -501,6 +597,22 @@
     ];
 
     let current = 0;
+    // ─── INTRO ──────────────────────────────────────────────────
+    const introScreen = document.getElementById('introScreen');
+    const initBtn = document.getElementById('initBtn');
+
+    initBtn.addEventListener('click', () => {
+      introScreen.classList.add('hidden');
+      setTimeout(() => introScreen.remove(), 650);
+    });
+
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Enter' && !introScreen.classList.contains('hidden')) {
+        introScreen.classList.add('hidden');
+        setTimeout(() => introScreen.remove(), 650);
+      }
+    });
+
     let typewriterTimer = null;
     let isTransitioning = false;
 
