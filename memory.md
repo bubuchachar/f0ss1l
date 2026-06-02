@@ -48,6 +48,9 @@ Register: bureaucratic exhaustion
 
 ---
 
+## Next Session
+- Replace Share Tech Mono with **Doto** (Google Fonts) for body text — next session
+
 ## Git Archaeology — Shallow Clone Limitation
 Shallow clones (`--depth=N`) make `git blame` unreliable for date attribution. All pre-depth lines get attributed to the oldest available commit boundary — not their true age.
 

@@ -11,6 +11,15 @@
 - Moved all 6 fossil literary pieces into src/fossils/ (01–06)
 - Global memory project_fossil.md migrated into project memory.md
 
+## 2026-05-31 — Font note
+- Next session: swap Share Tech Mono → Doto for body text
+- Also remove dead VT323 import from font link tag
+
+## 2026-05-31 — Retro cleanup
+- Removed dead `countNum` JS reference (element was deleted in earlier refactor, variable left behind)
+- Added shallow clone date attribution note to memory.md — kilo dates reliable, jq/redis are not
+- Files touched: src/index.html, memory.md
+
 ## 2026-05-31 — Session end
 - Full build session: scaffold → 6 fossils → site → polish → intro
 - Ready for Vercel deploy + Reddit/LinkedIn launch when design is approved
