@@ -450,9 +450,13 @@
       z-index: 100;
       transition: opacity 0.6s ease;
       overflow-y: auto;
+      scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
     }
 
-    @media (max-height: 700px) {
+    .intro-screen::-webkit-scrollbar { display: none; }
+
+    @media (max-width: 768px) {
       .intro-screen {
         align-items: flex-start;
       }
@@ -748,8 +752,7 @@
     const introScreen = document.getElementById('introScreen');
     const initBtn = document.getElementById('initBtn');
 
-    const isDesktop = window.innerWidth >= 768;
-    if (isDesktop) document.documentElement.style.overflowY = 'hidden';
+    document.documentElement.style.overflowY = 'hidden';
 
     initBtn.addEventListener('click', () => {
       introScreen.classList.add('hidden');
