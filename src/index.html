@@ -967,14 +967,19 @@
       emailSubmit.disabled = true;
       emailSubmit.textContent = '...';
       try {
-        await fetch(FORMSPREE, {
+        const res = await fetch(FORMSPREE, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
           body: JSON.stringify({ email })
         });
-      } catch {}
-      emailRow.style.display = 'none';
-      emailSuccess.style.display = 'block';
+        if (!res.ok) throw new Error(`${res.status}`);
+        emailRow.style.display = 'none';
+        emailSuccess.style.display = 'block';
+      } catch (err) {
+        emailSubmit.disabled = false;
+        emailSubmit.textContent = 'NOTIFY ME';
+        emailInput.placeholder = `error ${err.message} — try again`;
+      }
     });
 
     fetchCount();
