@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>F0SS1L — abandoned comments from real codebases</title>
+  <title>F0SS1L: abandoned comments from real codebases</title>
   <meta name="description" content="Code gets deleted, but comments are accidentally immortal. F0SS1L finds abandoned comments in real codebases and writes melancholic stories from their perspective.">
-  <meta property="og:title" content="F0SS1L — abandoned comments from real codebases">
+  <meta property="og:title" content="F0SS1L: abandoned comments from real codebases">
   <meta property="og:description" content="Code gets deleted, but comments are accidentally immortal. F0SS1L finds abandoned comments in real codebases and writes melancholic stories from their perspective.">
   <meta property="og:url" content="https://f0ss1l.vercel.app">
   <meta property="og:type" content="website">
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="F0SS1L — abandoned comments from real codebases">
+  <meta name="twitter:title" content="F0SS1L: abandoned comments from real codebases">
   <meta name="twitter:description" content="Code gets deleted, but comments are accidentally immortal.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -556,9 +556,9 @@
       </div>
       <div class="intro-body">
         <p>Every codebase is a Ship of Theseus.</p>
-        <p>Replace a function. Then the module. Then the architecture. At what point does it become something else? Nobody has a principled answer. The interesting zone is 1–99% — which is always where real codebases live. A continuous spectrum with a discontinuous social meaning.</p>
+        <p>Replace a function. Then the module. Then the architecture. At what point does it become something else? Nobody has a principled answer. The interesting zone is 1–99%, which is always where real codebases live. A continuous spectrum with a discontinuous social meaning.</p>
         <p>But code leaves traces.</p>
-        <p>Comments are the most honest writing a programmer produces. Nobody writes them to be read. No one's performing for an audience. <code>"fix," "wip," "ugh," "finally."</code> Involuntary poetry. Sometimes a comment meant to be temporary survives everything around it — pointing at a room that no longer exists.</p>
+        <p>Comments are the most honest writing a programmer produces. Nobody writes them to be read. No one's performing for an audience. <code>"fix," "wip," "ugh," "finally."</code> Involuntary poetry. Sometimes a comment meant to be temporary survives everything around it, pointing at a room that no longer exists.</p>
         <p class="payoff"><svg class="inline-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 67.5 10.5"><path d="M0,10.5V0h10.5v1.5H3v3h6v1.5H3v4.5H0Z"/><path d="M13.5,10.5v-1.5h-1.5V1.5h1.5V0h7.5v1.5h1.5v7.5h-1.5v1.5h-7.5ZM15,9h4.5v-4.5h-1.5v-1.5h1.5v-1.5h-4.5v4.5h1.5v1.5h-1.5v1.5ZM16.5,6v-1.5h1.5v1.5h-1.5Z"/><path d="M25.5,10.5v-1.5h-1.5v-1.5h3v1.5h4.5v-3h-6v-1.5h-1.5V1.5h1.5V0h7.5v1.5h1.5v1.5h-3v-1.5h-4.5v3h6v1.5h1.5v3h-1.5v1.5h-7.5Z"/><path d="M37.5,10.5v-1.5h-1.5v-1.5h3v1.5h4.5v-3h-6v-1.5h-1.5V1.5h1.5V0h7.5v1.5h1.5v1.5h-3v-1.5h-4.5v3h6v1.5h1.5v3h-1.5v1.5h-7.5Z"/><path d="M48,10.5v-1.5h3V3h-1.5v-1.5h1.5V0h3v9h3v1.5h-9Z"/><path d="M58.5,10.5V0h3v9h6v1.5h-9Z"/></svg> finds them.</p>
       </div>
       <button class="init-btn" id="initBtn">[ INITIALIZE ]</button>
@@ -617,7 +617,7 @@
     const FOSSILS = [
       {
         id: '01',
-        comment: '// TODO: remove this — temporary workaround for wrapping issue\nresult = result % MAX_VALUE;',
+        comment: '// TODO: remove this, temporary workaround for wrapping issue\nresult = result % MAX_VALUE;',
         prose: [
           `The line was written on a Tuesday in 2019. I know this because that's where my memory begins.`,
           `The programmer was in a hurry. Deadline, a meeting at three, a bug causing values to wrap in a way that felt wrong. She didn't have time to understand why. So she wrote two lines. Me, and the fix.`,
@@ -629,7 +629,7 @@
           `Today there's a new developer on the team. Junior. She's reading the file carefully, the way juniors do, not skimming yet. She's reached me.`,
           `I can tell by the stillness.`
         ],
-        source: 'composite — every codebase, everywhere',
+        source: 'composite: every codebase, everywhere',
         commit: 'lost to history',
         loneliness: '∞',
         date: null,
@@ -637,18 +637,18 @@
       },
       {
         id: '02',
-        comment: `// No session — sign in anonymously, no login screen needed`,
+        comment: `// No session. Sign in anonymously, no login screen needed.`,
         prose: [
           `Every time the app opens, it runs the same check. Is anyone here? It looks for a token, a saved session, a name. Something that proves a person came before.`,
           `Usually there's nothing. The user is new, or on a different device, or the storage was cleared. No history yet.`,
           `The instruction is: in that case, don't ask.`,
-          `Not: show a form. Not: redirect to sign up. Sign in anonymously — give them a real session, just not one attached to a name. Then get out of the way.`,
+          `Not: show a form. Not: redirect to sign up. Sign in anonymously. Give them a real session, just not one attached to a name. Then get out of the way.`,
           `There's a whole argument compressed into "no login screen needed." Someone thought about friction. Someone thought about the moment a person opens a photo journal for the first time, wanting to keep something, and decided: not here. That moment shouldn't start with a password field.`,
           `<em>Anonymous</em> in the code means: you exist in the system, the system just doesn't know your name yet. A UUID. A row in a database, waiting.`,
-          `The photos accumulate. The session stays. The anonymity doesn't disappear — it just becomes less accurate. The record fills in around it.`,
+          `The photos accumulate. The session stays. The anonymity doesn't disappear; it just becomes less accurate. The record fills in around it.`,
           `The comment doesn't say what happens if they never log in. It says: that's fine too.`
         ],
-        source: 'bubuchachar/memori-v2 — app/src/App.tsx',
+        source: 'bubuchachar/memori-v2 / app/src/App.tsx',
         commit: '8c11a85',
         date: 'Mar 27, 2026',
         loneliness: '34',
@@ -659,14 +659,14 @@
         comment: '/* Don\'t even check the return value as it\'s too late. */',
         prose: [
           `The line was written for a moment that happens only once per run.`,
-          `The final milliseconds, when the terminal needs its settings back — cooked mode, echo, all the things a shell expects to find when an editor closes. You call the function and it restores them. Usually.`,
+          `The final milliseconds, when the terminal needs its settings back: cooked mode, echo, all the things a shell expects to find when an editor closes. You call the function and it restores them. Usually.`,
           `But he said: don't check.`,
           `Because checking implies there's something to do with the answer. If it fails in the last line before exit, what would you do? Retry? Log it? The process is already ending. The user is either getting their terminal back or they aren't, and either way you're gone.`,
-          `There's a precision in that. Not resignation — clarity. Some errors live outside the domain of recovery. You don't handle them. You name them and move through.`,
+          `There's a precision in that. Not resignation. Clarity. Some errors live outside the domain of recovery. You don't handle them. You name them and move through.`,
           `Most programmers leave unchecked calls uncommented. He stopped. He looked. He chose not to look.`,
           `He knew the difference between ignoring something and accepting it.`
         ],
-        source: 'antirez/kilo — kilo.c',
+        source: 'antirez/kilo / kilo.c',
         commit: 'a3b8c2f',
         date: 'Jul 10, 2016',
         loneliness: '93',
@@ -680,11 +680,11 @@
           `The protocol is still here. Under every modern terminal, every shell, every text editor that has ever existed: the same handshake. Flip the bits. Tell the device: stop buffering, stop echoing, stop processing special characters. I'll handle it now.`,
           `He had to implement this. Sixty years later, in a language that didn't exist when the protocol was designed, for hardware that would have seemed like fiction to the people who wrote the spec. He did it. Then he wrote three words.`,
           `<em>1960 magic shit.</em>`,
-          `Not frustration — accuracy. It is magic. There is no clean explanation for why these flags do what they do. You learn them the way you learn spells: by rote, by asking someone older, because no one alive remembers the reasoning.`,
+          `Not frustration. Accuracy. It is magic. There is no clean explanation for why these flags do what they do. You learn them the way you learn spells: by rote, by asking someone older, because no one alive remembers the reasoning.`,
           `And it is shit, the way anything load-bearing and never revisited becomes shit: through accumulation.`,
           `He said both things. He moved on.`
         ],
-        source: 'antirez/kilo — kilo.c',
+        source: 'antirez/kilo / kilo.c',
         commit: 'a3b8c2f',
         date: 'Jul 10, 2016',
         loneliness: '93',
@@ -698,11 +698,11 @@
           `It does this by looking at the next instruction. If the next instruction is a return, it returns true. If the next instruction is a jump, it follows the jump recursively and checks again.`,
           `The FIXME has been here since someone noticed: if this function is wrong, it might be wrong about itself.`,
           `That's what <em>might be ironic</em> means. A broken return-detector, unable to detect its own broken return. The observer and the observed sharing a flaw. The tool examining the wound it has.`,
-          `Most FIXME notes are small distress signals — <em>come back here, something needs attention.</em> This one knows the shape of the problem and finds it funny. It understands that there's a joke available, and doesn't confirm whether the joke is real.`,
+          `Most FIXME notes are small distress signals: <em>come back here, something needs attention.</em> This one knows the shape of the problem and finds it funny. It understands that there's a joke available, and doesn't confirm whether the joke is real.`,
           `Nobody has looked closely enough to know. The only way would be to trace a recursive function through its own recursion, which is exactly the kind of thing you keep meaning to do.`,
           `It remains. Patient. Possibly laughing.`
         ],
-        source: 'jqlang/jq — src/execute.c',
+        source: 'jqlang/jq / src/execute.c',
         commit: null,
         date: null,
         loneliness: '87',
@@ -714,13 +714,13 @@
         prose: [
           `The mutation takes three lines. The undo takes two more.`,
           `Between them: this.`,
-          `He could have left no comment. The mutation is temporary — in, out, net effect zero, the structure returns exactly as it was. The tests would pass. The output would be correct. The ugliness would be invisible, buried under the abstraction layer where only the implementer goes.`,
+          `He could have left no comment. The mutation is temporary: in, out, net effect zero, the structure returns exactly as it was. The tests would pass. The output would be correct. The ugliness would be invisible, buried under the abstraction layer where only the implementer goes.`,
           `But he left a note. <em>This mutation is ugly, even if we undo it.</em>`,
-          `I think about the kind of person who writes this. Not a perfectionist — perfectionists rewrite the function. Someone more honest. Someone who knew the cleaner way and didn't have time for it, and felt the need to say so, and addressed it to whoever comes after.`,
+          `I think about the kind of person who writes this. Not a perfectionist. Perfectionists rewrite the function. Someone more honest. Someone who knew the cleaner way and didn't have time for it, and felt the need to say so, and addressed it to whoever comes after.`,
           `The undo is not an excuse. The comment understands this. You can restore a thing to its previous state and still have done something to it.`,
           `The mutation happened. The memory of it is right here.`
         ],
-        source: 'jqlang/jq — src/compile.c',
+        source: 'jqlang/jq / src/compile.c',
         commit: null,
         date: null,
         loneliness: '79',
@@ -731,15 +731,15 @@
         comment: `/* POSIX doesn't provide errno values\n   for strftime() failures; weird */`,
         prose: [
           `In 1988, a committee published a standard.`,
-          `It specified hundreds of functions. For most of them, it specified what the error code should be when they fail — a vocabulary of failure, so developers could tell users something. You could handle errors. You could be specific.`,
+          `It specified hundreds of functions. For most of them, it specified what the error code should be when they fail: a vocabulary of failure, so developers could tell users something. You could handle errors. You could be specific.`,
           `For strftime(), they didn't.`,
-          `They specified the return value: zero on failure. But the error code? Unspecified. If strftime fails — and it can fail, when the output buffer is too small, when the locale is wrong — it doesn't tell you why. It just stops. Returns zero. Leaves the error state wherever it was before.`,
+          `They specified the return value: zero on failure. But the error code? Unspecified. If strftime fails (and it can fail, when the output buffer is too small, when the locale is wrong) it doesn't tell you why. It just stops. Returns zero. Leaves the error state wherever it was before.`,
           `Someone discovered this while trying to write good error handling. Opened the spec. Read it twice. Closed it.`,
           `Wrote: <em>weird.</em>`,
           `That's the whole verdict. One word for a committee decision made before the developer was born, that will outlast every line they write, that cannot be fixed or worked around or appealed. Only acknowledged.`,
           `The frustration too old to be angry. The shrug that is the only honest response.`
         ],
-        source: 'jqlang/jq — src/builtin.c',
+        source: 'jqlang/jq / src/builtin.c',
         commit: null,
         date: null,
         loneliness: '81',
@@ -777,7 +777,7 @@
     const navCounter = document.getElementById('navCounter');
     const navCounterMobile = document.getElementById('navCounterMobile');
     const fossilNumber = document.getElementById('fossilNumber');
-    // countNum element removed — renderCountDisplay sets countDisplay.innerHTML directly
+    // countNum element removed; renderCountDisplay sets countDisplay.innerHTML directly
     const btnPrev = document.getElementById('btnPrev');
     const btnNext = document.getElementById('btnNext');
     const jumpInput = document.getElementById('jumpInput');
@@ -788,7 +788,7 @@
     function buildAttribution(f) {
       const lines = [];
       lines.push(`source: ${f.source}`);
-      if (f.commit) lines.push(`commit: ${f.commit}${f.date ? ` — ${f.date}` : ''}`);
+      if (f.commit) lines.push(`commit: ${f.commit}${f.date ? `, ${f.date}` : ''}`);
       if (f.license) lines.push(`license: ${f.license}`);
       lines.push(`${f.loneliness}% of the surrounding code is gone.`);
       return lines.join('\n');
@@ -925,7 +925,7 @@
 
     let liveCount = 0;
 
-    // Always start as question — never block clicks on load
+    // Always start as question; never block clicks on load
     renderCountDisplay(liveCount, false);
 
     async function fetchCount() {
@@ -978,7 +978,7 @@
       } catch (err) {
         emailSubmit.disabled = false;
         emailSubmit.textContent = 'NOTIFY ME';
-        emailInput.placeholder = `error ${err.message} — try again`;
+        emailInput.placeholder = `error: ${err.message}. try again`;
       }
     });
 
