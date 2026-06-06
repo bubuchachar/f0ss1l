@@ -915,7 +915,8 @@
     function renderCountDisplay(count, hasClicked) {
       const n = (count ?? 0).toLocaleString();
       if (!hasClicked) {
-        countDisplay.innerHTML = `${bracket(n)}  Be the first commit.`;
+        const pre = count > 0 ? 'Be the next commit.' : 'Be the first commit.';
+        countDisplay.innerHTML = `${bracket(n)}  ${pre}`;
         return;
       }
       const suffix = count >= THRESHOLD ? `  We'll get right to it.` : '';
@@ -933,7 +934,12 @@
         const r = await fetch(API + '/');
         const d = await r.json();
         liveCount = d.count ?? 0;
-        if (!interestBtn.classList.contains('clicked')) {
+        const alreadyClicked = !!localStorage.getItem(COUNTER_KEY);
+        if (alreadyClicked) {
+          interestBtn.classList.add('clicked');
+          emailCapture.classList.add('visible');
+          renderCountDisplay(liveCount, true);
+        } else {
           renderCountDisplay(liveCount, false);
         }
       } catch {}
