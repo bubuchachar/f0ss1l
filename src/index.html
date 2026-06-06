@@ -930,7 +930,7 @@
 
     async function fetchCount() {
       try {
-        const r = await fetch(API);
+        const r = await fetch(API + '/');
         const d = await r.json();
         liveCount = d.count ?? 0;
         if (!interestBtn.classList.contains('clicked')) {
