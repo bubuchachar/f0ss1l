@@ -936,24 +936,25 @@
       countDisplay.innerHTML = `${bracket(n)}  ${word} to search their own repo.${suffix}`;
     }
 
-    let liveCount = 0;
+    const COUNT_CACHE_KEY = 'fossil_count_cache';
+    const alreadyClicked = !!localStorage.getItem(COUNTER_KEY);
+    let liveCount = parseInt(localStorage.getItem(COUNT_CACHE_KEY) || '0', 10);
 
-    // Always start as question; never block clicks on load
-    renderCountDisplay(liveCount, false);
+    // Restore UI state immediately from localStorage; no waiting for fetch
+    if (alreadyClicked) {
+      interestBtn.classList.add('clicked');
+      emailCapture.classList.add('visible');
+    }
+    renderCountDisplay(liveCount, alreadyClicked);
 
     async function fetchCount() {
       try {
         const r = await fetch(API + '/');
+        if (!r.ok) return;
         const d = await r.json();
-        liveCount = d.count ?? 0;
-        const alreadyClicked = !!localStorage.getItem(COUNTER_KEY);
-        if (alreadyClicked) {
-          interestBtn.classList.add('clicked');
-          emailCapture.classList.add('visible');
-          renderCountDisplay(liveCount, true);
-        } else {
-          renderCountDisplay(liveCount, false);
-        }
+        liveCount = d.count ?? liveCount;
+        localStorage.setItem(COUNT_CACHE_KEY, String(liveCount));
+        renderCountDisplay(liveCount, !!localStorage.getItem(COUNTER_KEY));
       } catch {}
     }
 
@@ -965,6 +966,7 @@
       } catch {
         liveCount++;
       }
+      localStorage.setItem(COUNT_CACHE_KEY, String(liveCount));
       renderCountDisplay(liveCount, true);
     }
 
