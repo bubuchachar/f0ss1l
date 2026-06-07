@@ -949,7 +949,7 @@
 
     async function fetchCount() {
       try {
-        const r = await fetch(API + '/');
+        const r = await fetch('/api/counter');
         if (!r.ok) return;
         const d = await r.json();
         liveCount = d.count ?? liveCount;
@@ -960,7 +960,7 @@
 
     async function incrementCount() {
       try {
-        const r = await fetch(API + '/up');
+        const r = await fetch('/api/counter?action=up');
         const d = await r.json();
         liveCount = d.count ?? liveCount + 1;
       } catch {
