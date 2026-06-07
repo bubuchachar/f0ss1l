@@ -416,10 +416,15 @@
       white-space: nowrap;
     }
 
-    .email-submit:hover {
+    .email-submit:hover:not(:disabled) {
       color: var(--green);
       border-color: var(--green);
       background: var(--green-faint);
+    }
+
+    .email-submit:disabled {
+      opacity: 0.3;
+      cursor: default;
     }
 
     .email-success {
@@ -616,7 +621,7 @@
         <div class="email-capture" id="emailCapture">
           <div class="email-row" id="emailRow">
             <input class="email-input" id="emailInput" type="email" placeholder="drop your email. we'll tell you when it's live." autocomplete="email">
-            <button class="email-submit" id="emailSubmit">NOTIFY ME</button>
+            <button class="email-submit" id="emailSubmit" disabled>NOTIFY ME</button>
           </div>
           <p class="email-success" id="emailSuccess" style="display:none">You're on the list.</p>
         </div>
@@ -981,6 +986,10 @@
       }
     });
 
+    emailInput.addEventListener('input', () => {
+      emailSubmit.disabled = !emailInput.value.trim();
+    });
+
     emailSubmit.addEventListener('click', async () => {
       const email = emailInput.value.trim();
       if (!email) return;
@@ -996,7 +1005,7 @@
         emailRow.style.display = 'none';
         emailSuccess.style.display = 'block';
       } catch (err) {
-        emailSubmit.disabled = false;
+        emailSubmit.disabled = !emailInput.value.trim();
         emailSubmit.textContent = 'NOTIFY ME';
         emailInput.placeholder = `error: ${err.message}. try again`;
       }
