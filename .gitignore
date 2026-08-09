@@ -5,3 +5,11 @@ dist/
 .env
 .DS_Store
 .vercel
+
+# This repo is PUBLIC. Internal working notes stay local.
+# Keep them tracked in private repos, never here.
+memory.md
+log.md
+CLAUDE.md
+tasks.md
+.impeccable.md
